@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torre Palmas — Centro de Negocios Premium · Metepec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Primario */
+    --green:        #14994b;
+    --green-dark:   #0e7a3b;
+    --green-light:  #1db85a;
+    --green-bg:     rgba(20,153,75,0.06);
+    --green-border: rgba(20,153,75,0.18);
+
+    /* Olivo — acento cálido */
+    --olive:        #6b7c5c;
+    --olive-light:  #8a9e78;
+    --olive-pale:   #f1f4ee;
+    --olive-mid:    rgba(107,124,92,0.15);
+    --olive-border: rgba(107,124,92,0.22);
+
+    /* Blancos y superficie */
+    --white:        #ffffff;
+    --surface:      #f8f9f7;
+    --surface2:     #f2f5f0;
+    --surface3:     #eaefe6;
+
+    /* Texto oscuro */
+    --ink:          #1a1f18;
+    --ink-mid:      #4a5446;
+    --ink-low:      #7a8574;
+
+    /* Nav oscuro */
+    --nav-bg:       rgba(26,31,24,0.50);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CURSOR ── */
+  .cursor {
+    width: 9px; height: 9px; background: var(--green);
+    border-radius: 50%; position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999; transition: transform 0.1s;
+  }
+  .cursor-ring {
+    width: 30px; height: 30px; border: 1px solid var(--green);
+    border-radius: 50%; position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94); opacity: 0.45;
+  }
+
+  /* ══════════════ NAV ══════════════ */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 500;
+    padding: 0 56px; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s;
+    background: transparent;
+  }
+  nav.scrolled {
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 1px 0 rgba(107,124,92,0.15);
+  }
+  /* When on light pages nav starts white */
+  nav.light { background: var(--white); box-shadow: 0 1px 0 var(--olive-border); }
+  nav.light .nav-logo { color: var(--ink); }
+  nav.light .nav-links > li > a,
+  nav.light .nav-links > li > button.nav-drop-btn { color: var(--ink-mid); }
+  nav.light .nav-links > li > a:hover,
+  nav.light .nav-links > li > button.nav-drop-btn:hover,
+  nav.light .nav-links > li > a.active,
+  nav.light .nav-links > li > button.nav-drop-btn.active { color: var(--green); }
+  nav.light .hamburger span { background: var(--ink); }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; letter-spacing: 0.07em;
+    color: var(--white); text-decoration: none; cursor: none;
+    transition: color 0.3s;
+  }
+  .nav-logo span { color: var(--green); }
+
+  .nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+  .nav-links > li { position: relative; }
+  .nav-links > li > a, .nav-links > li > button.nav-drop-btn {
+    font-size: 11.5px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); text-decoration: none; background: none; border: none;
+    padding: 8px 13px; cursor: none; font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s; display: flex; align-items: center; gap: 5px;
+  }
+  .nav-links > li > a:hover,
+  .nav-links > li > button.nav-drop-btn:hover,
+  .nav-links > li > a.active,
+  .nav-links > li > button.nav-drop-btn.active { color: var(--green); }
+  .nav-drop-btn .caret {
+    width: 0; height: 0;
+    border-left: 3.5px solid transparent; border-right: 3.5px solid transparent;
+    border-top: 3.5px solid currentColor;
+    transition: transform 0.25s; flex-shrink: 0;
+  }
+  .nav-links > li.open .caret { transform: rotate(180deg); }
+
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    min-width: 210px; background: var(--white);
+    box-shadow: 0 8px 32px rgba(26,31,24,0.1), 0 1px 0 var(--olive-border);
+    border: 1px solid var(--olive-border); padding: 6px 0;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px); transition: opacity 0.22s, transform 0.22s;
+  }
+  .nav-links > li.open .nav-dropdown { opacity: 1; pointer-events: all; transform: none; }
+  .nav-dropdown a {
+    display: flex; align-items: center; gap: 11px;
+    padding: 11px 18px; font-size: 12px; font-weight: 400;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--ink-mid); text-decoration: none; cursor: none;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-dropdown a:hover { color: var(--green); background: var(--olive-pale); }
+  .nav-dropdown a .dd-icon { font-size: 14px; }
+  .nav-dropdown-divider { height: 1px; background: var(--olive-border); margin: 4px 0; }
+
+  .nav-cta {
+    background: var(--green); color: var(--white);
+    padding: 10px 22px; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.13em; text-transform: uppercase;
+    border: none; cursor: none; font-family: 'DM Sans', sans-serif;
+    transition: background 0.25s; margin-left: 10px;
+  }
+  .nav-cta:hover { background: var(--green-dark); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1px; background: var(--white); transition: all 0.3s; }
+
+  /* ── PAGE SYSTEM ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ══════════════ HERO — dark section ══════════════ */
+  #hero {
+    min-height: 100vh; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 56px 96px;
+    background: var(--ink);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(107,124,92,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,124,92,0.07) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+  .hero-glow {
+    position: absolute; top: -120px; right: -60px;
+    width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(20,153,75,0.13) 0%, transparent 68%);
+    pointer-events: none;
+  }
+  .hero-olive-accent {
+    position: absolute; bottom: 0; left: 0;
+    width: 40%; height: 3px;
+    background: linear-gradient(to right, var(--olive), transparent);
+  }
+  .hero-img-mock {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1;
+  }
+  .hero-img-mock::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--ink) 0%, rgba(26,31,24,0.2) 55%, transparent 100%);
+    z-index: 0;
+    display: none;
+  }
+  .hero-img-inner {
+    width: 100%; height: 100%;
+    position: relative; display: flex; align-items: flex-end; justify-content: center;
+  }
+  .hero-img-inner video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero-img-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  .building-silhouette {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 160px; height: 420px;
+    background: linear-gradient(to top, rgba(20,153,75,0.22), rgba(107,124,92,0.05));
+    clip-path: polygon(20% 100%, 20% 15%, 30% 15%, 30% 5%, 70% 5%, 70% 15%, 80% 15%, 80% 100%);
+  }
+  .building-windows {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    width: 96px; height: 300px; display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 7px; padding: 10px; z-index: 2;
+  }
+  .building-window {
+    background: rgba(20,153,75,0.18); border: 1px solid rgba(107,124,92,0.25);
+    animation: wBlink 3.5s ease infinite;
+  }
+  .building-window:nth-child(3n) { animation-delay: 1.2s; }
+  .building-window:nth-child(2n) { animation-delay: 0.7s; }
+  @keyframes wBlink { 0%,100%{background:rgba(20,153,75,0.18)} 50%{background:rgba(20,153,75,0.32)} }
+
+  .hero-content { position: relative; z-index: 2; max-width: 580px; }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--white); display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-eyebrow::before { content:''; display:block; width:36px; height:1px; background:var(--white); }
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(50px, 6.5vw, 90px); font-weight: 600; line-height: 0.95;
+    color: var(--white); opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .hero-h1 em { font-style: italic; color: var(--green); }
+  .hero-sub {
+    font-size: 15px; font-weight: 300; color: var(--white);
+    line-height: 1.8; max-width: 400px; margin-top: 24px; margin-bottom: 44px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  .hero-actions { display: flex; gap: 14px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; flex-wrap: wrap; }
+
+  /* Buttons */
+  .btn-primary {
+    background: var(--green); color: var(--white);
+    padding: 15px 34px; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: none; cursor: none; font-family: 'DM Sans', sans-serif;
+    transition: background 0.25s, transform 0.25s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+  .btn-outline-white {
+    background: transparent; color: var(--white);
+    padding: 15px 34px; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--white); cursor: none;
+    font-family: 'DM Sans', sans-serif; transition: border-color 0.25s, color 0.25s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline-white:hover { border-color: var(--white); color: var(--white); opacity: 0.8; }
+  .btn-outline-dark {
+    background: transparent; color: var(--ink);
+    padding: 15px 34px; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid rgba(26,31,24,0.25); cursor: none;
+    font-family: 'DM Sans', sans-serif; transition: border-color 0.25s, color 0.25s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline-dark:hover { border-color: var(--green); color: var(--green); }
+  .btn-outline-olive {
+    background: transparent; color: var(--olive);
+    padding: 15px 34px; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--olive-border); cursor: none;
+    font-family: 'DM Sans', sans-serif; transition: all 0.25s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline-olive:hover { border-color: var(--olive); background: var(--olive-pale); }
+
+  .hero-scroll {
+    position: absolute; bottom: 48px; right: 56px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); writing-mode: vertical-rl;
+    animation: fadeUp 0.8s ease 1s forwards; opacity: 0;
+  }
+  .hero-scroll::after {
+    content:''; display:block; width:1px; height:52px;
+    background: linear-gradient(to bottom, var(--olive-light), transparent);
+    animation: scrollLine 2s ease infinite;
+  }
+  @keyframes scrollLine {
+    0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top}
+    51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom}
+  }
+
+  /* ── STATS BAR — light ── */
+  .stats-bar {
+    background: var(--white); border-bottom: 1px solid var(--olive-border);
+    padding: 36px 56px; display: flex;
+    box-shadow: 0 4px 24px rgba(26,31,24,0.04);
+  }
+  .stat-item { flex: 1; text-align: center; border-right: 1px solid var(--olive-border); padding: 0 20px; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600; color: var(--green); line-height: 1; }
+  .stat-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-low); margin-top: 8px; }
+
+  /* ── SECTION SYSTEM — light ── */
+  .section-light { padding: 120px 56px; background: var(--white); }
+  .section-surface { padding: 120px 56px; background: var(--surface); }
+  .section-surface2 { padding: 120px 56px; background: var(--surface2); }
+  .section-olive { padding: 120px 56px; background: var(--olive-pale); }
+  .section-dark { padding: 120px 56px; background: var(--ink); }
+
+  .section-label {
+    font-size: 10px; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--olive); display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  }
+  .section-label::before { content:''; display:block; width:28px; height:1px; background:var(--olive); }
+  .section-label.on-dark { color: var(--olive-light); }
+  .section-label.on-dark::before { background: var(--olive-light); }
+  .section-label.green { color: var(--green); }
+  .section-label.green::before { background: var(--green); }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 4vw, 60px); font-weight: 600; line-height: 1.08; color: var(--ink); max-width: 680px;
+  }
+  .section-title em { font-style: italic; color: var(--green); }
+  .section-title.on-dark { color: var(--white); }
+  .section-body { font-size: 15px; font-weight: 300; color: var(--ink-mid); line-height: 1.8; max-width: 520px; margin-top: 18px; }
+  .section-body.on-dark { color: rgba(255,255,255,0.5); }
+
+  /* ── PRODUCTS GRID ── */
+  .products-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 64px; }
+  .product-card {
+    background: var(--white); padding: 48px 38px;
+    border: 1px solid var(--olive-border);
+    position: relative; overflow: hidden;
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s, background 0.35s, color 0.35s;
+    cursor: none;
+  }
+  .product-card::after {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background: linear-gradient(to right, var(--olive), var(--green));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(26,31,24,0.08); border-color: transparent; background: var(--green); }
+  .product-card:hover .product-tag { color: var(--white); }
+  .product-card:hover .product-title { color: var(--white); }
+  .product-card:hover .product-subtitle { color: var(--white); }
+  .product-card:hover .product-features li { color: var(--white); border-bottom-color: rgba(255,255,255,0.2); }
+  .product-card:hover::after { transform: scaleX(1); }
+  .product-tag { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive); margin-bottom: 18px; }
+  .product-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--ink); line-height: 1.1; margin-bottom: 6px; }
+  .product-subtitle { font-size: 12px; font-weight: 400; color: var(--ink-low); font-style: italic; margin-bottom: 28px; }
+  .product-features { list-style: none; margin-bottom: 36px; }
+  .product-features li {
+    font-size: 13px; font-weight: 400; color: var(--ink-mid);
+    padding: 9px 0; border-bottom: 1px solid var(--surface3);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .product-features li::before { content:'–'; color: var(--olive); flex-shrink: 0; }
+  .product-size {
+    font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300;
+    color: rgba(107,124,92,0.08); position: absolute; bottom: 24px; right: 24px; line-height: 1;
+  }
+  .product-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green); text-decoration: none; cursor: none; transition: gap 0.3s, color 0.3s;
+  }
+  .product-cta::after { content:'→'; }
+  .product-card:hover .product-cta { gap: 16px; color: var(--white); }
+
+  /* ── WHY SECTION ── */
+  .why-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-visual {
+    position: relative; height: 560px;
+    background: var(--ink); overflow: hidden;
+  }
+  .why-visual::before {
+    content:''; position:absolute; inset:0;
+    background:
+      linear-gradient(rgba(107,124,92,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,124,92,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 2;
+  }
+  .why-visual-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .why-visual-bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeSlide 20s infinite;
+  }
+  .why-visual-bg-img:nth-child(1) { animation-delay: 0s; background-image: url('images/CW 1.jpeg'); }
+  .why-visual-bg-img:nth-child(2) { animation-delay: 4s; background-image: url('images/portada.jpeg'); }
+  .why-visual-bg-img:nth-child(3) { animation-delay: 8s; background-image: url('images/CW 1.jpeg'); }
+  .why-visual-bg-img:nth-child(4) { animation-delay: 12s; background-image: url('images/portada.jpeg'); }
+  .why-visual-bg-img:nth-child(5) { animation-delay: 16s; background-image: url('images/CW 1.jpeg'); }
+  @keyframes fadeSlide {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    25% { opacity: 1; }
+    35% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  .why-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 3;
+  }
+  .why-visual-content { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; z-index: 4; }
+  .why-glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:320px; height:320px; background:radial-gradient(circle, rgba(20,153,75,0.1) 0%, transparent 70%); pointer-events:none; }
+  .why-badge { border: 1px solid var(--green); padding: 22px 28px; text-align: center; }
+  .why-badge-num { font-family:'Cormorant Garamond',serif; font-size:50px; font-weight:600; color:var(--white); line-height:1; }
+  .why-badge-text { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--white); margin-top:4px; }
+  .why-olive-bar { width: 100%; height: 3px; background: linear-gradient(to right, var(--olive-light), transparent); position: absolute; bottom: 0; left: 0; }
+
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+  .why-item {
+    padding: 28px; border: 1px solid var(--olive-border);
+    background: var(--white); transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+  }
+  .why-item:hover { border-color: var(--green); box-shadow: 0 8px 24px rgba(20,153,75,0.07); background: var(--green); }
+  .why-item:hover .why-item-title { color: var(--white); }
+  .why-item:hover .why-item-text { color: var(--white); }
+  .why-icon { font-size: 20px; margin-bottom: 10px; }
+  .why-item-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .why-item-text { font-size:12px; font-weight:400; color:var(--ink-low); line-height:1.6; }
+
+  /* ── AMENIDADES ── */
+  .amenidades-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--olive-border); margin-top: 64px; }
+  .amenidad-item { background: var(--white); padding: 40px 32px; transition: background 0.3s, color 0.3s; cursor: none; }
+  .amenidad-item:hover { background: var(--green); color: var(--white); }
+  .amenidad-item:hover .amenidad-title { color: var(--white); }
+  .amenidad-item:hover .amenidad-desc { color: var(--white); }
+  .amenidad-icon { font-size: 28px; margin-bottom: 14px; }
+  .amenidad-title { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .amenidad-desc { font-size:12px; font-weight:400; color:var(--ink-low); line-height:1.65; }
+
+  /* ── OLIVE FEATURE BAND ── */
+  .olive-band {
+    background: var(--olive-pale); border-top: 1px solid var(--olive-border); border-bottom: 1px solid var(--olive-border);
+    padding: 72px 56px;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  }
+  .olive-band-item { padding: 0 32px; border-right: 1px solid var(--olive-border); text-align: center; }
+  .olive-band-item:first-child { padding-left: 0; }
+  .olive-band-item:last-child { border-right: none; padding-right: 0; }
+  .olive-band-num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:600; color:var(--olive); line-height:1; }
+  .olive-band-label { font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-low); margin-top:8px; }
+
+  /* ── PRODUCT PAGE HERO (dark) ── */
+  .product-page-hero {
+    min-height: 60vh; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 140px 56px 88px; position: relative; overflow: hidden; background: var(--ink);
+  }
+  .product-page-hero .bg-lines {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(rgba(107,124,92,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,124,92,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .product-page-hero .bg-glow { position:absolute; top:-80px; right:-80px; width:560px; height:560px; background:radial-gradient(circle, rgba(20,153,75,0.1) 0%, transparent 68%); }
+  .product-page-hero .hero-olive-line { position:absolute; bottom:0; left:0; width:35%; height:2px; background:linear-gradient(to right, var(--olive-light), transparent); }
+  .product-page-hero > * { position: relative; z-index: 2; }
+  .product-page-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/portada nosotros.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+  .product-page-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  .large-number {
+    font-family:'Cormorant Garamond',serif; font-size:clamp(88px, 16vw, 240px); font-weight:600;
+    color:rgba(107,124,92,0.06); line-height:1; position:absolute; right:56px; bottom:-20px;
+    pointer-events:none; user-select:none;
+  }
+
+  /* ── SERVICES GRID ── */
+  .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--olive-border); margin-top: 44px; }
+  .service-item { background: var(--white); padding: 28px 22px; display: flex; align-items: flex-start; gap: 12px; transition: background 0.25s; }
+  .service-item:hover { background: var(--olive-pale); }
+  .service-icon { font-size: 17px; flex-shrink: 0; }
+  .service-text { font-size:13px; font-weight:400; color:var(--ink-mid); line-height:1.5; }
+
+  /* ── OFFICE TABLE ── */
+  .office-table { width:100%; border-collapse:collapse; margin-top:44px; }
+  .office-table th { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--olive); padding:14px 22px; text-align:left; border-bottom:1px solid var(--olive-border); }
+  .office-table td { padding:18px 22px; font-size:14px; font-weight:300; color:var(--ink-mid); border-bottom:1px solid var(--surface3); transition:background 0.2s; }
+  .office-table tr:hover td { background:var(--olive-pale); }
+  .office-table td:first-child { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--ink); }
+  .status-dot { width:8px; height:8px; background:var(--green); border-radius:50%; display:inline-block; margin-right:7px; }
+  .status-dot.yellow { background:#d97706; }
+
+  /* ── PRICE HIGHLIGHT ── */
+  .price-highlight { padding:88px 56px; background:var(--ink); border-top:1px solid rgba(107,124,92,0.2); text-align:center; position:relative; overflow:hidden; }
+  .price-highlight::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:480px; height:480px; background:radial-gradient(circle, rgba(20,153,75,0.1) 0%, transparent 70%); }
+  .price-highlight > * { position:relative; z-index:2; }
+  .price-main { font-family:'Cormorant Garamond',serif; font-size:clamp(56px, 9vw, 112px); font-weight:600; color:var(--green); line-height:1; }
+  .price-label { font-size:14px; font-weight:300; color:rgba(255,255,255,0.45); margin-top:10px; }
+  .price-note { font-size:11px; color:rgba(107,124,92,0.6); margin-top:7px; letter-spacing:0.08em; }
+
+  /* ── FILTERS ── */
+  .filters-bar { padding:60px 56px; background:var(--surface); border-bottom:1px solid var(--olive-border); }
+  .filters-row { display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; }
+  .filter-group { display:flex; flex-direction:column; gap:7px; flex:1; min-width:150px; }
+  .filter-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--olive); }
+  .filter-select {
+    background:var(--white); border:1px solid var(--olive-border);
+    color:var(--ink); padding:11px 14px; font-size:13px;
+    font-family:'DM Sans',sans-serif; cursor:none; appearance:none; outline:none;
+    transition:border-color 0.25s;
+  }
+  .filter-select:focus { border-color:var(--green); }
+  .filter-btn {
+    background:var(--green); color:var(--white); padding:11px 28px;
+    font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+    border:none; cursor:none; font-family:'DM Sans',sans-serif; transition:background 0.25s; height:44px;
+  }
+  .filter-btn:hover { background:var(--green-dark); }
+
+  /* ── RESULT CARDS ── */
+  .results-section { padding: 72px 56px; }
+  .results-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; }
+  .results-count { font-size:12px; font-weight:300; color:var(--ink-low); letter-spacing:0.1em; }
+  .results-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .result-card {
+    background:var(--white); border:1px solid var(--olive-border);
+    padding:36px 30px; transition:border-color 0.3s, transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s; cursor:none;
+  }
+  .result-card:hover { border-color:var(--green); transform:translateY(-4px); box-shadow:0 20px 48px rgba(20,153,75,0.07); background: var(--green); }
+  .result-card:hover .result-card-tag { color: var(--white); }
+  .result-card:hover .result-card-title { color: var(--white); }
+  .result-card:hover .result-card-size { color: var(--white); }
+  .result-card:hover .result-features li { color: var(--white); }
+  .result-card:hover .result-card-price { color: var(--white); }
+  .result-card:hover .result-card-price-label { color: var(--white); }
+  .result-card:hover .btn-sm-green { border-color: var(--white); color: var(--white); background: transparent; }
+  .result-card:hover .btn-sm-olive { border-color: var(--white); color: var(--white); background: transparent; }
+  .result-card-tag { font-size:9px; letter-spacing:0.28em; text-transform:uppercase; color:var(--olive); margin-bottom:10px; }
+  .avail-badge { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:18px; }
+  .avail-badge.green { border:1px solid var(--green); color:var(--green); }
+  .avail-badge.yellow { border:1px solid #d97706; color:#d97706; }
+  .result-card-title { font-family:'Cormorant Garamond',serif; font-size:25px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .result-card-size { font-size:12px; font-weight:400; color:var(--ink-low); margin-bottom:22px; }
+  .result-features { list-style:none; margin-bottom:28px; }
+  .result-features li { font-size:12px; font-weight:400; color:var(--ink-mid); padding:5px 0; border-bottom:1px solid var(--surface3); display:flex; gap:8px; }
+  .result-features li::before { content:'·'; color:var(--olive); }
+  .result-card-price { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--green); margin-bottom:3px; }
+  .result-card-price-label { font-size:11px; color:var(--ink-low); margin-bottom:22px; }
+  .result-actions { display:flex; gap:8px; flex-wrap:wrap; }
+  .btn-sm-green {
+    padding:9px 18px; font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    border:1px solid var(--green); color:var(--green);
+    background:transparent; cursor:none; font-family:'DM Sans',sans-serif; transition:all 0.25s;
+  }
+  .btn-sm-green:hover { background:var(--green); color:var(--white); }
+  .btn-sm-olive {
+    padding:9px 18px; font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    border:1px solid var(--olive-border); color:var(--ink-mid);
+    background:transparent; cursor:none; font-family:'DM Sans',sans-serif; transition:all 0.25s;
+  }
+  .btn-sm-olive:hover { border-color:var(--olive); color:var(--olive); }
+
+  /* ── CONTACT ── */
+  .contact-section { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+  .contact-channels { display:flex; flex-direction:column; gap:16px; margin-top:44px; }
+  .channel-card { border:1px solid var(--olive-border); padding:22px 26px; display:flex; align-items:center; gap:18px; transition:border-color 0.3s, background 0.3s, color 0.3s; cursor:none; text-decoration:none; }
+  .channel-card:hover { border-color:var(--green); background:var(--green); }
+  .channel-card:hover .channel-type { color: var(--white); }
+  .channel-card:hover .channel-value { color: var(--white); }
+  .channel-card:hover .channel-hours { color: var(--white); }
+  .channel-icon { font-size:22px; }
+  .channel-info { flex:1; }
+  .channel-type { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--olive); margin-bottom:3px; }
+  .channel-value { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; color:var(--ink); }
+  .channel-hours { font-size:11px; color:var(--ink-low); margin-top:2px; }
+  .channel-arrow { color:var(--green); opacity:0; transition:opacity 0.3s; }
+  .channel-card:hover .channel-arrow { opacity:1; }
+  .contact-form { display:flex; flex-direction:column; gap:14px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .form-group { display:flex; flex-direction:column; gap:7px; }
+  .form-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--olive); }
+  .form-input, .form-select, .form-textarea {
+    background:var(--surface); border:1px solid var(--olive-border);
+    color:var(--ink); padding:13px 16px; font-size:14px; font-family:'DM Sans',sans-serif;
+    outline:none; transition:border-color 0.3s; cursor:none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--green); background:var(--white); }
+  .form-input::placeholder, .form-textarea::placeholder { color:var(--ink-low); }
+  .form-select option { background:var(--white); color:var(--ink); }
+  .form-textarea { resize:vertical; min-height:116px; }
+  .form-submit {
+    background:var(--green); color:var(--white); padding:17px;
+    font-size:12px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase;
+    border:none; cursor:none; font-family:'DM Sans',sans-serif; transition:background 0.25s; margin-top:6px;
+  }
+  .form-submit:hover { background:var(--green-dark); }
+
+  /* ── NOSOTROS ── */
+  .numbers-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--olive-border); margin-top:44px; }
+  .num-item { background:var(--olive-pale); padding:38px 30px; }
+  .num-big { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:600; color:var(--olive); line-height:1; }
+  .num-text { font-size:12px; font-weight:400; color:var(--ink-low); margin-top:7px; }
+  .valor-items { display:flex; flex-direction:column; gap:18px; margin-top:44px; }
+  .valor-item { padding:22px 26px; border:1px solid var(--olive-border); background:var(--white); transition:border-color 0.3s, background 0.3s, color 0.3s; }
+  .valor-item:hover { border-color:var(--green); background:var(--green); }
+  .valor-item:hover .valor-title { color: var(--white); }
+  .valor-item:hover .valor-text { color: var(--white); }
+  .valor-title { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; color:var(--ink); margin-bottom:7px; }
+  .valor-text { font-size:13px; font-weight:400; color:var(--ink-low); line-height:1.6; }
+
+  /* ── CTA DARK ── */
+  .cta-section {
+    padding:100px 56px; background:var(--ink);
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .cta-section::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:520px; height:520px; background:radial-gradient(circle, rgba(20,153,75,0.1) 0%, transparent 70%); }
+  .cta-section::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent, var(--olive-light), transparent); }
+  .cta-section > * { position:relative; z-index:2; }
+  .cta-title { font-family:'Cormorant Garamond',serif; font-size:clamp(30px, 4.5vw, 66px); font-weight:600; color:var(--white); margin-bottom:14px; }
+  .cta-title em { font-style:italic; color:var(--green); }
+  .cta-text { font-size:15px; font-weight:300; color:rgba(255,255,255,0.45); margin-bottom:44px; }
+  .cta-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .whatsapp-btn {
+    background:#25d366; color:white; padding:15px 34px;
+    font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+    border:none; cursor:none; font-family:'DM Sans',sans-serif;
+    transition:filter 0.25s, transform 0.25s;
+    display:flex; align-items:center; gap:9px; text-decoration:none;
+  }
+  .whatsapp-btn:hover { filter:brightness(1.08); transform:translateY(-2px); }
+
+  /* ── UBICACION ── */
+  .distances-row { display:flex; border:1px solid var(--olive-border); max-width:900px; margin:0 auto 80px; background:var(--white); }
+  .dist-item { flex:1; padding:32px 20px; border-right:1px solid var(--olive-border); text-align:center; }
+  .dist-item:last-child { border-right:none; }
+  .dist-num { font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:600; color:var(--green); line-height:1; }
+  .dist-unit { font-size:13px; font-weight:300; color:var(--ink-low); margin-left:3px; }
+  .dist-label { font-size:11px; letter-spacing:0.08em; color:var(--ink-low); margin-top:5px; }
+  .map-container {
+    background:var(--surface2); height:460px; margin:0 56px;
+    border:1px solid var(--olive-border);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .map-container::before {
+    content:''; position:absolute; inset:0;
+    background:
+      linear-gradient(var(--olive-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--olive-border) 1px, transparent 1px);
+    background-size:56px 56px; opacity:0.4;
+  }
+  .map-pin { width:14px; height:14px; background:var(--green); border-radius:50%; position:relative; z-index:2; box-shadow:0 0 0 8px rgba(20,153,75,0.15), 0 0 0 20px rgba(20,153,75,0.05); animation:ping 2s ease infinite; }
+  @keyframes ping { 0%,100%{box-shadow:0 0 0 8px rgba(20,153,75,0.15),0 0 0 20px rgba(20,153,75,0.05)} 50%{box-shadow:0 0 0 16px rgba(20,153,75,0.1),0 0 0 36px rgba(20,153,75,0.03)} }
+  .map-label { position:absolute; z-index:2; background:var(--white); border:1px solid var(--olive-border); box-shadow:0 4px 16px rgba(26,31,24,0.08); padding:12px 18px; font-size:11px; letter-spacing:0.09em; color:var(--ink); top:calc(50% - 60px); left:calc(50% + 18px); }
+  .surround-card { padding:40px; background:var(--white); border:1px solid var(--olive-border); transition:border-color 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s; cursor:none; }
+  .surround-card:hover { border-color:var(--green); box-shadow:0 12px 32px rgba(20,153,75,0.06); background: var(--green); }
+  .surround-card:hover .surround-title { color: var(--white); }
+  .surround-card:hover .surround-text { color: var(--white); }
+  .surround-icon { font-size:28px; margin-bottom:14px; }
+  .surround-title { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .surround-text { font-size:13px; font-weight:400; color:var(--ink-low); line-height:1.6; }
+
+  /* ── FOOTER ── */
+  footer { padding:80px 56px 44px; background: linear-gradient(135deg, var(--green) 0%, var(--ink) 50%, #000 100%); border-top:2px solid rgba(107,124,92,0.2); }
+  .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:56px; }
+  .footer-brand-name { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:var(--white); margin-bottom:7px; }
+  .footer-brand-name img { height: 75px; object-fit: contain; }
+  .footer-brand-name span { color:var(--green); }
+  .footer-tagline { font-size:12px; font-weight:300; color:var(--white); line-height:1.6; margin-bottom:22px; }
+  .footer-social { display:flex; gap:10px; }
+  .social-btn { width:34px; height:34px; border:1px solid rgba(107,124,92,0.3); display:flex; align-items:center; justify-content:center; font-size:11px; color:rgba(255,255,255,0.3); cursor:none; text-decoration:none; transition:all 0.25s; }
+  .social-btn:hover { border-color:var(--olive-light); color:var(--olive-light); }
+  .footer-col-title { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--olive-light); margin-bottom:18px; }
+  .footer-links { list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .footer-links a { font-size:13px; font-weight:300; color:var(--white); text-decoration:none; cursor:none; transition:color 0.25s; }
+  .footer-links a:hover { color:var(--olive-light); }
+  .footer-contact-item { display:flex; gap:10px; margin-bottom:10px; font-size:13px; font-weight:300; color:var(--white); }
+  .footer-contact-item span:first-child { color:var(--white); }
+  .footer-bottom { padding-top:28px; border-top:1px solid rgba(107,124,92,0.12); display:flex; justify-content:space-between; align-items:center; }
+  .footer-copy { font-size:11px; color:var(--white); }
+  .footer-by { font-size:11px; color:var(--white); }
+  .footer-by span { color:var(--white); }
+
+  /* ── MOBILE NAV ── */
+  .mobile-nav { display:none; position:fixed; inset:0; background:rgba(26,31,24,0.99); backdrop-filter:blur(20px); z-index:999; flex-direction:column; align-items:center; justify-content:center; gap:28px; overflow-y:auto; }
+  .mobile-nav.open { display:flex; }
+  .mobile-nav a { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--white); text-decoration:none; cursor:none; transition:color 0.25s; }
+  .mobile-nav a:hover { color:var(--green); }
+  .mobile-nav-section { position:relative; }
+  .mobile-nav-toggle { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--white); background:none; border:none; cursor:none; transition:color 0.25s; padding:0; display:flex; align-items:center; gap:8px; }
+  .mobile-nav-toggle:hover { color:var(--green); }
+  .mobile-nav-submenu { display:none; flex-direction:column; gap:16px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.2); }
+  .mobile-nav-submenu.open { display:flex; }
+  .mobile-nav-submenu a { font-size:22px; color:rgba(255,255,255,0.8); }
+  .mobile-nav-submenu a:hover { color:var(--green); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  .fade-in { opacity:0; transform:translateY(22px); transition:opacity 0.7s, transform 0.7s; }
+  .fade-in.visible { opacity:1; transform:none; }
+
+  /* ── SPACING HELPERS ── */
+  .mt-64 { margin-top: 64px; }
+  .mt-48 { margin-top: 48px; }
+  .text-center { text-align: center; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:1100px) {
+    .products-grid { grid-template-columns:1fr; }
+    .why-section { grid-template-columns:1fr; }
+    .why-visual { height:280px; }
+    .why-visual-content { top:40px; bottom:40px; left:0; right:0; justify-content:flex-start; padding-bottom:80px; }
+    .amenidades-grid { grid-template-columns:1fr 1fr; }
+    .services-grid { grid-template-columns:1fr 1fr; }
+    .results-grid { grid-template-columns:1fr 1fr; }
+    .contact-section { grid-template-columns:1fr; gap:48px; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .olive-band { grid-template-columns:1fr 1fr; }
+    .why-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:768px) {
+    nav { padding:0 22px; }
+    .nav-links, .nav-cta { display:none; }
+    .hamburger { display:flex; }
+    #hero { padding:80px 22px 40px; min-height:auto; }
+    .section-light, .section-surface, .section-surface2, .section-olive, .section-dark { padding:80px 22px; }
+    .stats-bar { padding:20px 22px; overflow-x:auto; }
+    .distances-row { flex-direction:column; }
+    .dist-item { border-right:none; border-bottom:1px solid var(--olive-border); }
+    .map-container { margin:0 22px; height:300px; }
+    .services-grid { grid-template-columns:1fr; }
+    .results-grid { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr; }
+    .cta-actions { flex-direction:column; align-items:center; }
+    .hero-img-mock { opacity:0.2; }
+    .filters-row { flex-direction:column; }
+    .olive-band { grid-template-columns:1fr 1fr; gap:0; padding:48px 22px; }
+    .numbers-grid { grid-template-columns:1fr 1fr; }
+    .amenidades-grid { grid-template-columns:1fr; }
+    .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
+    .why-grid { grid-template-columns:1fr; }
+    .product-page-hero { padding:120px 22px 64px; }
+    .office-types, .services-section { padding:60px 22px; }
+    .results-section, .filters-bar { padding:56px 22px; }
+    .contact-section { padding:72px 22px; }
+    .cta-section { padding:80px 22px; }
+    .map-container { height:260px; }
+    .floor-section { padding:60px 22px; }
+    .floor-nav { gap:10px; }
+    .floor-display { padding:24px; }
+    .floor-legend { gap:16px; padding:16px; }
+    .floor-btn { padding:10px 20px; font-size:10px; }
+    .floor-visual-map { grid-template-columns: repeat(2, 1fr); max-width: 350px; }
+    .floor-block { aspect-ratio: auto; height: 140px; }
+    .floor-block-label { font-size: 10px; bottom: 8px; left: 8px; }
+  }
+
+  /* ── FLOOR NAVIGATION ── */
+  .floor-section { padding:80px 56px; background:linear-gradient(135deg, #f8f9f7 0%, #f2f5f0 100%); border-bottom:1px solid var(--olive-border); }
+  .floor-header { margin-bottom:32px; text-align:center; }
+  .floor-legend { display:flex; gap:28px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; align-items:center; padding:24px; background:var(--white); border-radius:8px; box-shadow:0 2px 12px rgba(26,31,24,0.04); }
+  .legend-item { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:500; color:var(--ink-mid); }
+  .legend-dot { width:12px; height:12px; border-radius:2px; flex-shrink:0; }
+  .legend-dot.available { background:linear-gradient(135deg, #15a853 0%, #0e7a3b 100%); box-shadow:0 2px 8px rgba(20,153,75,0.3); }
+  .legend-dot.soon { background:linear-gradient(135deg, #fbbf24 0%, #d97706 100%); box-shadow:0 2px 8px rgba(217,119,6,0.3); }
+  .legend-dot.occupied { background:linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); box-shadow:0 2px 8px rgba(220,38,38,0.3); }
+  .floor-nav { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .floor-btn { background:var(--white); color:var(--ink); border:2px solid var(--olive-border); padding:12px 26px; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; cursor:none; transition:all 0.3s; font-family:'DM Sans',sans-serif; border-radius:4px; }
+  .floor-btn:hover { border-color:var(--green); color:var(--green); transform:translateY(-2px); }
+  .floor-btn.active { background:linear-gradient(135deg, #14994b 0%, #0e7a3b 100%); color:var(--white); border-color:transparent; box-shadow:0 8px 20px rgba(20,153,75,0.25); }
+  .floor-display { background:var(--white); padding:48px; border:1px solid var(--olive-border); margin-top:24px; border-radius:8px; box-shadow:0 4px 20px rgba(26,31,24,0.06); }
+  /* FLOOR VISUAL MAP */
+  .floor-visual-map { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:40px; max-width:500px; margin-left:auto; margin-right:auto; }
+  .floor-block { position:relative; aspect-ratio:1; border-radius:6px; overflow:hidden; box-shadow:0 4px 16px rgba(26,31,24,0.1); transition:all 0.4s; cursor:none; border:2px solid rgba(255,255,255,0.5); }
+  .floor-block:hover { transform:scale(1.05); }
+  .floor-block-content { width:100%; height:100%; display:flex; flex-direction:column; }
+  .floor-block-unit { flex:1; transition:all 0.3s; position:relative; }
+  .floor-block-unit::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.05); }
+  .block-available { background:linear-gradient(135deg, #15a853 0%, #0e7a3b 100%); }
+  .block-soon { background:linear-gradient(135deg, #fbbf24 0%, #d97706 100%); }
+  .block-occupied { background:linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); opacity:0.7; }
+  .floor-block-label { position:absolute; bottom:10px; left:10px; font-size:11px; font-weight:700; color:var(--white); letter-spacing:0.08em; text-transform:uppercase; z-index:2; text-shadow:0 2px 4px rgba(0,0,0,0.2); }
+  .floor-svg-container { width:100%; height:auto; display:flex; align-items:center; justify-content:center; max-width:900px; margin:0 auto; position:relative; min-height:600px; aspect-ratio:4742.76/4654.14; }
+  .floor-svg-container svg { width:100%; height:100%; filter:drop-shadow(0 8px 24px rgba(26,31,24,0.1)); }
+  .unit-available { fill:url(#grad-available) !important; stroke:#0e7a3b !important; stroke-width:2px !important; transition:all 0.3s; }
+  .unit-available:hover { stroke-width:3px !important; filter:drop-shadow(0 4px 16px rgba(20,153,75,0.35)); }
+  .unit-soon { fill:url(#grad-soon) !important; stroke:#d97706 !important; stroke-width:2px !important; transition:all 0.3s; }
+  .unit-soon:hover { stroke-width:3px !important; filter:drop-shadow(0 4px 16px rgba(217,119,6,0.35)); }
+  .unit-occupied { fill:url(#grad-occupied) !important; stroke:#b91c1c !important; stroke-width:2px !important; transition:all 0.3s; opacity:0.8; }
+  .unit-occupied:hover { opacity:1; stroke-width:3px !important; filter:drop-shadow(0 4px 16px rgba(220,38,38,0.35)); }
+  @keyframes unitFade { from { opacity:0.3; filter:drop-shadow(0 0 0px rgba(26,31,24,0)); } to { opacity:1; filter:drop-shadow(0 2px 8px rgba(26,31,24,0.1)); } }
+  
+  /* Floor Viewer Piso 3 */
+  .floor-viewer {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .floor-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1;
+    position: relative;
+  }
+
+  .floor-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .room-tooltip {
+    position: absolute;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10;
+    max-width: 250px;
+  }
+
+  .room-tooltip h4 {
+    margin: 0 0 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  .room-tooltip p {
+    margin: 3px 0;
+    font-size: 12px;
+    color: var(--ink-low);
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo" onclick="showPage('home');return false;"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="height: 40px; object-fit: contain;"></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home');return false;" class="nav-link active" data-page="home">Inicio</a></li>
+    <li><a href="#" onclick="showPage('nosotros');return false;" class="nav-link" data-page="nosotros">Nosotros</a></li>
+    <li><a href="#" onclick="showPage('ubicacion');return false;" class="nav-link" data-page="ubicacion">Ubicación</a></li>
+    <li id="dropLi">
+      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="servicios" onclick="toggleDrop();return false;">
+        Servicios <span class="caret"></span>
+      </button>
+      <div class="nav-dropdown" id="navDropdown">
+        <a href="#" onclick="showPage('torre');return false;"><span class="dd-icon">🏢</span>Torre Palmas</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="#" onclick="showPage('business');return false;"><span class="dd-icon">💼</span>Business Center</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="#" onclick="showPage('coworking');return false;"><span class="dd-icon">🤝</span>Coworking</a>
+      </div>
+    </li>
+    <li><a href="#" onclick="showPage('disponibilidad');return false;" class="nav-link" data-page="disponibilidad">Disponibilidad</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('contacto')">Agendar Visita</button>
+  <button class="hamburger" onclick="toggleMobileNav()" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#" onclick="showPage('home');toggleMobileNav()">Inicio</a>
+  <a href="#" onclick="showPage('nosotros');toggleMobileNav()">Nosotros</a>
+  <a href="#" onclick="showPage('ubicacion');toggleMobileNav()">Ubicación</a>
+  <div class="mobile-nav-section">
+    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Servicios <span id="serviceCaretMobile">▼</span></button>
+    <div class="mobile-nav-submenu" id="mobileServiceMenu">
+      <a href="#" onclick="showPage('torre');toggleMobileNav()">Torre Palmas</a>
+      <a href="#" onclick="showPage('business');toggleMobileNav()">Business Center</a>
+      <a href="#" onclick="showPage('coworking');toggleMobileNav()">Coworking</a>
+    </div>
+  </div>
+  <a href="#" onclick="showPage('disponibilidad');toggleMobileNav()">Disponibilidad</a>
+  <a href="#" onclick="showPage('contacto');toggleMobileNav()">Contacto</a>
+</div>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO dark -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-olive-accent"></div>
+    <div class="hero-img-mock">
+      <div class="hero-img-inner">
+        <video autoplay muted loop playsinline>
+          <source src="images/video portada.mp4" type="video/mp4">
+          Tu navegador no soporta videos HTML5
+        </video>
+      </div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Centro de Negocios · Metepec</p>
+      <h1 class="hero-h1">Tu oficina en<br>el mejor <em>centro<br>de negocios</em></h1>
+      <p class="hero-sub">Oficinas personalizadas, equipadas y espacios coworking sobre Av. Comonfort, frente al Parque Providencia.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('disponibilidad')">Ver Disponibilidad</button>
+        <button class="btn-outline-white" onclick="showPage('contacto')">Agendar Visita</button>
+      </div>
+    </div>
+    <span class="hero-scroll">Explorar</span>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Formatos de espacio</div></div>
+    <div class="stat-item"><div class="stat-num">214m²</div><div class="stat-label">Oficina más grande</div></div>
+    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Salas de juntas</div></div>
+    <div class="stat-item"><div class="stat-num">35</div><div class="stat-label">Min. de Santa Fe</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Personalizable</div></div>
+  </div>
+
+  <!-- PRODUCTS — light -->
+  <div class="section-light">
+    <p class="section-label">Nuestros Espacios</p>
+    <h2 class="section-title">Elige el espacio <em>ideal</em> para ti</h2>
+    <p class="section-body">Tres formatos pensados para diferentes momentos de tu negocio.</p>
+    <div class="products-grid">
+      <div class="product-card">
+        <p class="product-tag">Torre Palmas</p>
+        <h3 class="product-title">Oficinas<br>Corporativas</h3>
+        <p class="product-subtitle">Tu oficina, tu identidad</p>
+        <ul class="product-features">
+          <li>Espacios totalmente adaptables</li>
+          <li>Vistas al Parque Providencia</li>
+          <li>Vigilancia y CCTV 24/7</li>
+          <li>Estacionamiento techado</li>
+          <li>Domicilio fiscal y comercial</li>
+        </ul>
+        <a class="product-cta" href="#" onclick="showPage('torre');return false;">Ver Torre Palmas</a>
+        <span class="product-size">214m²</span>
+      </div>
+      <div class="product-card">
+        <p class="product-tag">Business Center</p>
+        <h3 class="product-title">Oficinas<br>All-Inclusive</h3>
+        <p class="product-subtitle">Oficina lista, hoy mismo</p>
+        <ul class="product-features">
+          <li>Mobiliario de lujo incluido</li>
+          <li>Recepción y staff bilingüe</li>
+          <li>5 salas de juntas equipadas</li>
+          <li>One Number Service</li>
+          <li>100 impresiones b/n mensuales</li>
+        </ul>
+        <a class="product-cta" href="#" onclick="showPage('business');return false;">Ver Business Center</a>
+        <span class="product-size">37m²</span>
+      </div>
+      <div class="product-card">
+        <p class="product-tag">Coworking</p>
+        <h3 class="product-title">Espacio<br>Colaborativo</h3>
+        <p class="product-subtitle">Sin ataduras</p>
+        <ul class="product-features">
+          <li>Espacio individual asignado</li>
+          <li>5 hrs/mes en salas de juntas</li>
+          <li>50 impresiones mensuales</li>
+          <li>Internet de alta velocidad</li>
+          <li>Contratos desde 3 meses</li>
+        </ul>
+        <a class="product-cta" href="#" onclick="showPage('coworking');return false;">Ver Coworking</a>
+        <span class="product-size" style="font-size:28px">$3,990</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OLIVE BAND -->
+  <div class="olive-band">
+    <div class="olive-band-item"><div class="olive-band-num">3</div><div class="olive-band-label">Formatos de espacio</div></div>
+    <div class="olive-band-item"><div class="olive-band-num">214m²</div><div class="olive-band-label">Oficina más grande</div></div>
+    <div class="olive-band-item"><div class="olive-band-num">7</div><div class="olive-band-label">Salas de juntas</div></div>
+    <div class="olive-band-item"><div class="olive-band-num">2</div><div class="olive-band-label">Salas de capacitación</div></div>
+  </div>
+
+  <!-- WHY — surface -->
+  <div class="section-surface">
+    <div class="why-section">
+      <div class="why-visual">
+        <div class="why-visual-bg">
+          <div class="why-visual-bg-img"></div>
+          <div class="why-visual-bg-img"></div>
+          <div class="why-visual-bg-img"></div>
+          <div class="why-visual-bg-img"></div>
+          <div class="why-visual-bg-img"></div>
+        </div>
+        <div class="why-visual-overlay"></div>
+        <div class="why-glow"></div>
+        <div class="why-olive-bar"></div>
+        <div class="why-visual-content">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.28em;color:rgba(107,124,92,0.5);text-transform:uppercase;margin-bottom:20px">Metepec · Edo. de México</div>
+          <div class="why-badge"><div class="why-badge-num">#1</div><div class="why-badge-text">Centro de Negocios</div></div>
+          <div style="display:flex;gap:14px;margin-top:14px">
+            <div class="why-badge" style="padding:16px 22px"><div class="why-badge-num" style="font-size:30px">2026</div><div class="why-badge-text">Operando</div></div>
+            <div class="why-badge" style="padding:16px 22px"><div class="why-badge-num" style="font-size:30px">A+</div><div class="why-badge-text">Categoría</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">¿Por qué Torre Palmas?</p>
+        <h2 class="section-title">Más que una oficina, una <em>dirección</em> que habla por ti</h2>
+        <div class="why-grid">
+          <div class="why-item"><div class="why-icon">📍</div><div class="why-item-title">Ubicación Premium</div><div class="why-item-text">Av. Comonfort, frente al Parque Providencia, a un lado de Town Square.</div></div>
+          <div class="why-item"><div class="why-icon">🏢</div><div class="why-item-title">3 Formatos</div><div class="why-item-text">Coworking, oficinas equipadas o personalizables según tu etapa empresarial.</div></div>
+          <div class="why-item"><div class="why-icon">⚡</div><div class="why-item-title">Mudanza Inmediata</div><div class="why-item-text">Espacios listos para operar desde el día uno. Sin esperas.</div></div>
+          <div class="why-item"><div class="why-icon">🚗</div><div class="why-item-title">35 min de Santa Fe</div><div class="why-item-text">Conectividad con CDMX, AICM y Toluca. El punto estratégico del Edomex.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMENIDADES — white -->
+  <div class="section-light">
+    <p class="section-label">Amenidades</p>
+    <h2 class="section-title">Todo lo que necesitas, <em>ya está aquí</em></h2>
+    <p class="section-body">Infraestructura completa para que tu empresa opere con los más altos estándares de calidad.</p>
+    <div class="amenidades-grid">
+      <div class="amenidad-item"><div class="amenidad-icon">🤝</div><div class="amenidad-title">7 Salas de Juntas</div><div class="amenidad-desc">Equipadas para 6, 8 y 15 personas con pantalla y tecnología.</div></div>
+      <div class="amenidad-item"><div class="amenidad-icon">🎓</div><div class="amenidad-title">2 Salas de Capacitación</div><div class="amenidad-desc">Para 20 y 40 personas. Formación y eventos corporativos.</div></div>
+      <div class="amenidad-item"><div class="amenidad-icon">☕</div><div class="amenidad-title">Cafetería & Coffee Lounge</div><div class="amenidad-desc">Comedor, terraza y áreas comunes para tus colaboradores.</div></div>
+      <div class="amenidad-item"><div class="amenidad-icon">🏛️</div><div class="amenidad-title">Terraza para Eventos</div><div class="amenidad-desc">Eventos corporativos exclusivos con vista al Parque Providencia.</div></div>
+      <div class="amenidad-item"><div class="amenidad-icon">📡</div><div class="amenidad-title">WiFi de Alta Velocidad</div><div class="amenidad-desc">Internet en todas las áreas comunes del edificio.</div></div>
+      <div class="amenidad-item"><div class="amenidad-icon">🔒</div><div class="amenidad-title">Acceso Controlado 24/7</div><div class="amenidad-desc">CCTV y vigilancia permanente para tu tranquilidad.</div></div>
+    </div>
+  </div>
+
+  <!-- CTA dark -->
+  <div class="cta-section">
+    <p class="section-label on-dark" style="justify-content:center">Siguiente Paso</p>
+    <h2 class="cta-title">¿Listo para tu <em>nueva oficina?</em></h2>
+    <p class="cta-text">Agenda tu visita y conoce el espacio ideal para tu empresa.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/527225719944" class="whatsapp-btn" target="_blank">💬 WhatsApp · 722 571 9944</a>
+      <button class="btn-outline-white" onclick="showPage('disponibilidad')">Ver Disponibilidad</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════ NOSOTROS ══════════════ -->
+<div class="page" id="page-nosotros">
+  <div class="product-page-hero">
+    <div class="product-page-bg"></div>
+    <div class="product-page-overlay"></div>
+    <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+    <p class="hero-eyebrow">Nosotros</p>
+    <h1 class="hero-h1" style="color:var(--white)">El proyecto <em>inmobiliario</em><br>más exclusivo de Metepec</h1>
+    <p class="hero-sub">Respaldado por Inmobiliaria BTO, especializada en renta de espacios corporativos de alta gama.</p>
+    <div class="hero-actions" style="margin-top:0">
+      <button class="btn-primary" onclick="showPage('contacto')">Conocer nuestras oficinas</button>
+      <button class="btn-outline-white" onclick="showPage('contacto')">Agendar visita</button>
+    </div>
+    <div class="large-number">BTO</div>
+  </div>
+  <div class="section-light" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
+    <div>
+      <p class="section-label">Quiénes Somos</p>
+      <h2 class="section-title">Arquitectura, tecnología y <em>servicios integrales</em></h2>
+      <p class="section-body">Torre Palmas es un proyecto de Inmobiliaria BTO, especializada en la renta de oficinas y locales comerciales de alta gama. Hemos desarrollado el centro de negocios más completo de Metepec.</p>
+      <p class="section-body" style="margin-top:14px">Combinamos arquitectura corporativa, tecnología y servicios integrales para que cada empresa opere con la mejor imagen y los más altos estándares de calidad.</p>
+      <div class="numbers-grid">
+        <div class="num-item"><div class="num-big">3</div><div class="num-text">Formatos de espacio</div></div>
+        <div class="num-item"><div class="num-big">214m²</div><div class="num-text">Oficina más grande</div></div>
+        <div class="num-item"><div class="num-big">7</div><div class="num-text">Salas de juntas</div></div>
+        <div class="num-item"><div class="num-big">100%</div><div class="num-text">Personalizable</div></div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label">Propuesta de Valor</p>
+      <h2 class="section-title" style="font-size:32px">La mejor <em>imagen corporativa</em><br>para su negocio</h2>
+      <div class="valor-items">
+        <div class="valor-item"><div class="valor-title">Tres Formatos Premium</div><div class="valor-text">Oficinas personalizables, equipadas y coworking bajo los mismos estándares de calidad reconocida en Metepec.</div></div>
+        <div class="valor-item"><div class="valor-title">Servicios Integrales</div><div class="valor-text">Recepción, vigilancia, estacionamiento, wifi, salas de juntas, cafetería y áreas comunes en un solo lugar.</div></div>
+        <div class="valor-item"><div class="valor-title">Atención Personalizada</div><div class="valor-text">Nuestro equipo lo acompaña desde la primera visita hasta la operación diaria.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-section">
+    <h2 class="cta-title">Un proyecto de <em>Inmobiliaria BTO</em></h2>
+    <p class="cta-text">Torre Palmas es nuestro proyecto insignia: el centro de negocios más completo y exclusivo de Metepec.</p>
+    <div class="cta-actions">
+      <button class="btn-primary" onclick="showPage('contacto')">Contáctanos</button>
+      <button class="btn-outline-white" onclick="showPage('disponibilidad')">Ver disponibilidad</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ UBICACION ══════════════ -->
+<div class="page" id="page-ubicacion">
+  <div class="product-page-hero">
+    <div class="product-page-bg" style="background-image: url('images/ubicacion.png');"></div>
+    <div class="product-page-overlay"></div>
+    <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+    <p class="hero-eyebrow">Ubicación Premium</p>
+    <h1 class="hero-h1" style="color:var(--white)"><em>Metepec,</em><br>Edo. de México</h1>
+    <p class="hero-sub">Av. Ignacio Comonfort 1312, Col. La Providencia — el punto ideal para el desarrollo de su actividad empresarial.</p>
+    <div class="hero-actions" style="margin-top:0">
+      <a href="https://maps.app.goo.gl/dqwFKaaLSqL8jTWA6" class="btn-primary" target="_blank">Ver en Google Maps</a>
+      <a href="https://maps.app.goo.gl/dqwFKaaLSqL8jTWA6" class="btn-outline-white" target="_blank">Abrir en Maps</a>
+    </div>
+    <div class="large-number">MTZ</div>
+  </div>
+  <div class="section-light text-center">
+    <p class="section-label" style="justify-content:center">Conectividad</p>
+    <h2 class="section-title mx-auto" style="text-align:center;margin-bottom:16px">Conectado con <em>todo</em></h2>
+    <p class="section-body mx-auto" style="text-align:center;margin-bottom:48px">A sólo 35 minutos de Santa Fe. Distancias clave desde Torre Palmas.</p>
+    <div class="distances-row" style="max-width:900px;margin:0 auto 80px">
+      <div class="dist-item"><div class="dist-num">35<span class="dist-unit">min</span></div><div class="dist-label">Santa Fe, CDMX</div></div>
+      <div class="dist-item"><div class="dist-num">15<span class="dist-unit">min</span></div><div class="dist-label">Aeropuerto Toluca</div></div>
+      <div class="dist-item"><div class="dist-num">11<span class="dist-unit">min</span></div><div class="dist-label">Tren Interurbano</div></div>
+      <div class="dist-item"><div class="dist-num">5<span class="dist-unit">min</span></div><div class="dist-label">Galerías Metepec</div></div>
+      <div class="dist-item"><div class="dist-num">0<span class="dist-unit">m</span></div><div class="dist-label">Town Square</div></div>
+    </div>
+  </div>
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.0842890647404!2d-99.63456092346993!3d19.265947381486428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cd339eca24f16d%3A0x1234567890abcdef!2sAv.%20Ignacio%20Comonfort%201312!5e0!3m2!1ses!2smx!4v1234567890" width="100%" height="100%" style="border:0;position:absolute;inset:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div style="position:absolute;bottom:18px;right:18px;font-size:10px;letter-spacing:0.15em;color:var(--white);text-transform:uppercase;background:rgba(0,0,0,0.5);padding:6px 12px;border-radius:4px;z-index:10;">Google Maps</div>
+  </div>
+  <div class="section-surface" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:80px">
+    <div class="surround-card"><div class="surround-icon">🌳</div><div class="surround-title">Parque Providencia</div><div class="surround-text">Vistas verdes desde tu oficina. Ambiente único en el corazón corporativo de Metepec.</div></div>
+    <div class="surround-card"><div class="surround-icon">🛍️</div><div class="surround-title">Town Square Metepec</div><div class="surround-text">El centro comercial más innovador en servicios y entretenimiento, a un lado del edificio.</div></div>
+    <div class="surround-card"><div class="surround-icon">🏛️</div><div class="surround-title">Zonas Corporativas</div><div class="surround-text">Santa Fe, Interlomas y Parques Industriales cercanos. PIB per cápita de los más altos del Edomex.</div></div>
+  </div>
+  <div class="cta-section">
+    <h2 class="cta-title">¿Listo para <em>visitarnos?</em></h2>
+    <p class="cta-text">Agenda tu visita y conoce el espacio de primera mano.</p>
+    <div class="cta-actions"><a href="https://wa.me/527225719944" class="whatsapp-btn" target="_blank">💬 WhatsApp · 722 571 9944</a></div>
+  </div>
+</div>
+
+<!-- ══════════════ TORRE ══════════════ -->
+<div class="page" id="page-torre">
+  <div class="product-page-hero">
+    <div class="product-page-bg" style="background-image: url('images/torre palmas.jpg');"></div>
+    <div class="product-page-overlay"></div>
+    <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+    <p class="hero-eyebrow">Oficinas Corporativas</p>
+    <h1 class="hero-h1" style="color:var(--white)">Torre <em>Palmas</em></h1>
+    <p class="hero-sub">Oficinas desde 67 m² hasta 214 m², 100% personalizables. Construye tu espacio corporativo a la medida de tu marca.</p>
+    <div class="hero-actions" style="margin-top:0">
+      <button class="btn-primary" onclick="showPage('contacto')">Solicitar Cotización</button>
+      <button class="btn-outline-white" onclick="showPage('contacto')">Agendar Visita</button>
+    </div>
+    <div class="large-number">67–214</div>
+  </div>
+  <div class="section-light">
+    <p class="section-label">Propuesta de Valor</p>
+    <h2 class="section-title">La mejor <em>imagen corporativa</em><br>para su negocio</h2>
+    <div class="why-grid" style="margin-top:48px;max-width:900px">
+      <div class="why-item"><div class="why-icon">🎨</div><div class="why-item-title">100% Personalizable</div><div class="why-item-text">Diseña el layout, los acabados y la distribución que tu empresa necesita.</div></div>
+      <div class="why-item"><div class="why-icon">📐</div><div class="why-item-title">Desde 67 hasta 214 m²</div><div class="why-item-text">Múltiples opciones para equipos pequeños o corporativos.</div></div>
+      <div class="why-item"><div class="why-icon">🪟</div><div class="why-item-title">Vistas Privilegiadas</div><div class="why-item-text">Vistas al Parque Providencia desde varios niveles del edificio.</div></div>
+      <div class="why-item"><div class="why-icon">🕐</div><div class="why-item-title">Horario Extendido</div><div class="why-item-text">Acceso controlado con horario extendido para mayor flexibilidad.</div></div>
+    </div>
+  </div>
+  <div class="section-surface" style="padding-top:80px;padding-bottom:80px">
+    <p class="section-label">Servicios Incluidos</p>
+    <h2 class="section-title" style="font-size:36px;margin-bottom:0">Todo incluido en <em>tu renta</em></h2>
+    <div class="services-grid" style="margin-top:44px">
+      <div class="service-item"><span class="service-icon">👥</span><span class="service-text">Recepción profesional</span></div>
+      <div class="service-item"><span class="service-icon">🔐</span><span class="service-text">Acceso controlado</span></div>
+      <div class="service-item"><span class="service-icon">📹</span><span class="service-text">CCTV y vigilancia 24/7</span></div>
+      <div class="service-item"><span class="service-icon">🚗</span><span class="service-text">Estacionamiento techado</span></div>
+      <div class="service-item"><span class="service-icon">🚙</span><span class="service-text">Estacionamiento exterior</span></div>
+      <div class="service-item"><span class="service-icon">🤝</span><span class="service-text">Amenidades en 2° Nivel</span></div>
+      <div class="service-item"><span class="service-icon">📡</span><span class="service-text">WiFi en áreas comunes</span></div>
+      <div class="service-item"><span class="service-icon">📬</span><span class="service-text">Domicilio fiscal y comercial</span></div>
+    </div>
+  </div>
+  <div class="section-light" style="padding-top:80px;padding-bottom:80px">
+    <p class="section-label">Opciones de Espacio</p>
+    <h2 class="section-title" style="font-size:36px">Elige el <em>tamaño ideal</em></h2>
+    <table class="office-table">
+      <thead><tr><th>Tipo</th><th>Superficie</th><th>Ideal para</th><th>Disponibilidad</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>Oficina Pequeña</td><td>67 m²</td><td>5–8 personas</td><td><span class="status-dot"></span>Disponible</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Cotizar</button></td></tr>
+        <tr><td>Oficina Mediana</td><td>100–130 m²</td><td>10–15 personas</td><td><span class="status-dot yellow"></span>Próximamente</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Notificarme</button></td></tr>
+        <tr><td>Oficina Grande</td><td>150–214 m²</td><td>15–30 personas</td><td><span class="status-dot"></span>Disponible</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Cotizar</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cta-section">
+    <h2 class="cta-title">¿Listo para tu <em>oficina corporativa?</em></h2>
+    <p class="cta-text">Agenda tu visita y ve los espacios disponibles.</p>
+    <div class="cta-actions"><a href="https://wa.me/527225719944" class="whatsapp-btn" target="_blank">💬 WhatsApp</a><button class="btn-outline-white" onclick="showPage('disponibilidad')">Ver disponibilidad</button></div>
+  </div>
+</div>
+
+<!-- ══════════════ BUSINESS ══════════════ -->
+<div class="page" id="page-business">
+  <div class="product-page-hero">
+    <div class="product-page-bg" style="background-image: url('images/bussynes center.jpeg');"></div>
+    <div class="product-page-overlay"></div>
+    <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+    <p class="hero-eyebrow">Oficinas Equipadas</p>
+    <h1 class="hero-h1" style="color:var(--white)">Business<br><em>Center</em></h1>
+    <p class="hero-sub">Oficinas desde 13 m² hasta 37 m². Llega con tu laptop y comienza a operar el mismo día.</p>
+    <div class="hero-actions" style="margin-top:0">
+      <button class="btn-primary" onclick="showPage('disponibilidad')">Ver Disponibilidad</button>
+      <button class="btn-outline-white" onclick="showPage('contacto')">Agendar Visita</button>
+    </div>
+    <div class="large-number">BC</div>
+  </div>
+  <div class="section-light">
+    <p class="section-label">¿Por qué Business Center?</p>
+    <h2 class="section-title">Comodidad, lujo <em>y exclusividad</em></h2>
+    <div class="why-grid" style="margin-top:48px;max-width:900px">
+      <div class="why-item"><div class="why-icon">⚡</div><div class="why-item-title">Operación Inmediata</div><div class="why-item-text">No esperas mobiliario ni instalación. Tu oficina ya está lista desde el día uno.</div></div>
+      <div class="why-item"><div class="why-icon">💼</div><div class="why-item-title">Imagen Profesional</div><div class="why-item-text">Recepción y diseño corporativo premium para dar la mejor impresión.</div></div>
+      <div class="why-item"><div class="why-icon">🛋️</div><div class="why-item-title">Mobiliario de Lujo</div><div class="why-item-text">Espacios alfombrados, muebles de la más alta calidad y pantalla incluida.</div></div>
+      <div class="why-item"><div class="why-icon">🌐</div><div class="why-item-title">Staff Bilingüe</div><div class="why-item-text">Recepción y atención telefónica en español e inglés.</div></div>
+    </div>
+  </div>
+  <div class="section-surface" style="padding-top:80px;padding-bottom:80px">
+    <p class="section-label">Servicios Incluidos</p>
+    <h2 class="section-title" style="font-size:36px;margin-bottom:0">All-inclusive desde <em>el día uno</em></h2>
+    <div class="services-grid" style="margin-top:44px">
+      <div class="service-item"><span class="service-icon">👥</span><span class="service-text">Recepción profesional</span></div>
+      <div class="service-item"><span class="service-icon">🌐</span><span class="service-text">Staff bilingüe</span></div>
+      <div class="service-item"><span class="service-icon">📞</span><span class="service-text">Atención telefónica personalizada</span></div>
+      <div class="service-item"><span class="service-icon">🖨️</span><span class="service-text">100 impresiones b/n mensuales</span></div>
+      <div class="service-item"><span class="service-icon">☎️</span><span class="service-text">One Number Service</span></div>
+      <div class="service-item"><span class="service-icon">🪑</span><span class="service-text">Mobiliario de lujo</span></div>
+      <div class="service-item"><span class="service-icon">🛋️</span><span class="service-text">4 Salas de espera exclusivas</span></div>
+      <div class="service-item"><span class="service-icon">🤝</span><span class="service-text">5 Salas de juntas equipadas</span></div>
+      <div class="service-item"><span class="service-icon">🧹</span><span class="service-text">Servicio de limpieza</span></div>
+      <div class="service-item"><span class="service-icon">📡</span><span class="service-text">WiFi de alta velocidad</span></div>
+      <div class="service-item"><span class="service-icon">🚗</span><span class="service-text">Estacionamiento techado</span></div>
+      <div class="service-item"><span class="service-icon">📬</span><span class="service-text">Domicilio fiscal y comercial</span></div>
+    </div>
+  </div>
+  <div class="section-light" style="padding-top:80px;padding-bottom:80px">
+    <p class="section-label">Tipos de Oficina</p>
+    <h2 class="section-title" style="font-size:36px">Elige la <em>oficina ideal</em></h2>
+    <table class="office-table">
+      <thead><tr><th>Tipo</th><th>Tamaño</th><th>Personas</th><th>Disponibilidad</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>Ejecutiva</td><td>13 m²</td><td>1–2</td><td><span class="status-dot"></span>Disponible</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Solicitar precio</button></td></tr>
+        <tr><td>Ejecutiva Large</td><td>19 m²</td><td>2–3</td><td><span class="status-dot"></span>Disponible</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Solicitar precio</button></td></tr>
+        <tr><td>Ejecutiva Plus</td><td>17 m²</td><td>2</td><td><span class="status-dot yellow"></span>Próximamente</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Notificarme</button></td></tr>
+        <tr><td>Ejecutiva Large Plus</td><td>22 m²</td><td>3–4</td><td><span class="status-dot"></span>Disponible</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Solicitar precio</button></td></tr>
+        <tr><td>Gerencial</td><td>37 m²</td><td>4–6</td><td><span class="status-dot"></span>Disponible</td><td><button class="btn-sm-green" onclick="showPage('contacto')">Solicitar precio</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cta-section">
+    <h2 class="cta-title">Comienza a operar <em>hoy mismo</em></h2>
+    <p class="cta-text">Agenda tu visita y ve las oficinas disponibles en el Business Center.</p>
+    <div class="cta-actions"><a href="https://wa.me/527225719944" class="whatsapp-btn" target="_blank">💬 WhatsApp</a><button class="btn-outline-white" onclick="showPage('disponibilidad')">Ver disponibilidad</button></div>
+  </div>
+</div>
+
+<!-- ══════════════ COWORKING ══════════════ -->
+<div class="page" id="page-coworking">
+  <div class="product-page-hero">
+    <div class="product-page-bg" style="background-image: url('images/CW 1.jpeg');"></div>
+    <div class="product-page-overlay"></div>
+    <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+    <p class="hero-eyebrow">Espacio Colaborativo</p>
+    <h1 class="hero-h1" style="color:var(--white)">Coworking<br><em>Torre Palmas</em></h1>
+    <p class="hero-sub">Live, Work & Create. Una nueva forma de trabajar para emprendedores y nuevos equipos.</p>
+    <div class="hero-actions" style="margin-top:0">
+      <button class="btn-primary" onclick="showPage('contacto')">Reservar mi Espacio</button>
+      <button class="btn-outline-white" onclick="showPage('contacto')">Conocer el Lugar</button>
+    </div>
+    <div class="large-number">CW</div>
+  </div>
+  <div class="price-highlight">
+    <p style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--olive-light);margin-bottom:14px">Precio desde</p>
+    <div class="price-main">$3,990</div>
+    <p class="price-label">+ IVA al mes</p>
+    <p class="price-note">Contratos desde 3 meses · Consulta términos y condiciones</p>
+    <button class="btn-primary" onclick="showPage('contacto')" style="margin-top:28px">Reservar Ahora</button>
+  </div>
+  <div class="section-light">
+    <p class="section-label">Una nueva forma de trabajar</p>
+    <h2 class="section-title">Espacio diseñado para <em>potenciar</em> tu productividad</h2>
+    <div class="why-grid" style="margin-top:48px;max-width:900px">
+      <div class="why-item"><div class="why-icon">🚀</div><div class="why-item-title">Para Emprendedores</div><div class="why-item-text">Espacios para potenciar tu productividad sin compromisos a largo plazo.</div></div>
+      <div class="why-item"><div class="why-icon">👥</div><div class="why-item-title">Networking Real</div><div class="why-item-text">Conecta con otros profesionales y empresas dentro de Torre Palmas.</div></div>
+      <div class="why-item"><div class="why-icon">📅</div><div class="why-item-title">Flexibilidad Total</div><div class="why-item-text">Contratos desde 3 meses, sin ataduras de largo plazo.</div></div>
+      <div class="why-item"><div class="why-icon">🏢</div><div class="why-item-title">Domicilio Fiscal</div><div class="why-item-text">Domicilio fiscal y comercial en dirección premium de Metepec.</div></div>
+    </div>
+  </div>
+  <div class="section-olive" style="padding-top:80px;padding-bottom:80px">
+    <p class="section-label">Incluido en tu Membresía</p>
+    <h2 class="section-title" style="font-size:36px;margin-bottom:0">Todo lo que necesitas <em>para trabajar</em></h2>
+    <div class="services-grid" style="margin-top:44px;background:var(--olive-border)">
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">🪑</span><span class="service-text">Espacio individual asignado</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">🤝</span><span class="service-text">Salas de juntas · 5 hrs mensuales</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">🖨️</span><span class="service-text">50 copias o impresiones b/n</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">👥</span><span class="service-text">Servicio de atención a clientes</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">📡</span><span class="service-text">Internet de alta velocidad</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">📬</span><span class="service-text">Recepción de documentos</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">☕</span><span class="service-text">Autoservicio de café</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">🍴</span><span class="service-text">Acceso a cafetería en terraza</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">🚗</span><span class="service-text">Estacionamiento exterior gratuito</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">🧹</span><span class="service-text">Servicio de limpieza</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">📋</span><span class="service-text">Domicilio fiscal y comercial</span></div>
+      <div class="service-item" style="background:var(--white)"><span class="service-icon">🔒</span><span class="service-text">Vigilancia 24/7</span></div>
+    </div>
+  </div>
+  <div class="cta-section">
+    <h2 class="cta-title">Tu espacio de trabajo <em>te espera</em></h2>
+    <p class="cta-text">Agenda una visita y conoce el espacio coworking de Torre Palmas.</p>
+    <div class="cta-actions"><a href="https://wa.me/527225719944" class="whatsapp-btn" target="_blank">💬 WhatsApp</a><button class="btn-primary" onclick="showPage('contacto')">Reservar Ahora</button></div>
+  </div>
+</div>
+
+<!-- ══════════════ DISPONIBILIDAD ══════════════ -->
+<div class="page" id="page-disponibilidad">
+  <div class="product-page-hero" style="min-height:44vh">
+    <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+    <p class="hero-eyebrow">Inventario en Tiempo Real</p>
+    <h1 class="hero-h1" style="color:var(--white)">Encuentra tu <em>oficina ideal</em></h1>
+    <p class="hero-sub">Filtra por formato y tamaño. Agenda tu visita directamente.</p>
+  </div>
+  <!-- FLOOR VISUALIZATION -->
+  <div class="floor-section">
+    <div class="floor-header">
+      <p class="section-label">Visualización Interactiva</p>
+      <h2 class="section-title" style="font-size:32px">Estado de <em>Disponibilidad</em></h2>
+      <div class="floor-legend">
+        <div class="legend-item">
+          <div class="legend-dot available"></div>
+          <span>Disponible inmediata</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot soon"></div>
+          <span>Próximamente</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot occupied"></div>
+          <span>Ocupada</span>
+        </div>
+      </div>
+      <div class="floor-nav">
+        <button class="floor-btn active" onclick="updateFloorView(3)" data-floor="3">Piso 3</button>
+        <button class="floor-btn" onclick="updateFloorView(4)" data-floor="4">Piso 4</button>
+      </div>
+    </div>
+    <div class="floor-display">
+      <div class="floor-svg-container" id="floorSvgContainer">
+        <!-- Dinámicamente renderizado por updateFloorView -->
+      </div>
+    </div>
+  </div>
+  <div class="filters-bar">
+    <p class="section-label" style="margin-bottom:22px">Filtrar Espacios</p>
+    <div class="filters-row">
+      <div class="filter-group">
+        <label class="filter-label">Formato</label>
+        <select class="filter-select" id="filterFormato" onchange="filterResults()">
+          <option value="">Todos los formatos</option>
+          <option value="torre">Torre Palmas</option>
+          <option value="business">Business Center</option>
+          <option value="coworking">Coworking</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">Disponibilidad</label>
+        <select class="filter-select" id="filterDisp" onchange="filterResults()">
+          <option value="">Cualquier disponibilidad</option>
+          <option value="inmediata">Inmediata</option>
+          <option value="pronto">En 1 mes</option>
+        </select>
+      </div>
+      <button class="filter-btn" onclick="filterResults()">Buscar</button>
+      <button class="btn-outline-dark" style="height:44px;padding:0 18px" onclick="resetFilters()">Limpiar</button>
+    </div>
+  </div>
+  <div class="results-section">
+    <div class="results-header">
+      <div><p class="section-label">Espacios Disponibles</p><h2 class="section-title" style="font-size:30px" id="resultsTitle">3 espacios encontrados</h2></div>
+      <p class="results-count">Mayo 2026</p>
+    </div>
+    <div class="results-grid" id="resultsGrid">
+      <div class="result-card" data-format="coworking" data-disp="inmediata">
+        <p class="result-card-tag">Coworking</p>
+        <div class="avail-badge green"><span class="status-dot" style="width:6px;height:6px;margin:0"></span>Disponible ahora</div>
+        <h3 class="result-card-title">Espacio Individual</h3>
+        <p class="result-card-size">Membresía · 1 persona</p>
+        <ul class="result-features"><li>Internet alta velocidad</li><li>5 hrs/mes salas de juntas</li><li>50 impresiones mensuales</li><li>Domicilio fiscal</li></ul>
+        <div class="result-card-price">$3,990</div>
+        <div class="result-card-price-label">+ IVA / mes</div>
+        <div class="result-actions"><button class="btn-sm-green" onclick="showPage('contacto')">Reservar</button><button class="btn-sm-olive" onclick="showPage('coworking')">Ver detalles</button></div>
+      </div>
+      <div class="result-card" data-format="business" data-disp="inmediata">
+        <p class="result-card-tag">Business Center</p>
+        <div class="avail-badge green"><span class="status-dot" style="width:6px;height:6px;margin:0"></span>Disponible ahora</div>
+        <h3 class="result-card-title">Ejecutiva Large Plus</h3>
+        <p class="result-card-size">Business Center · 22 m²</p>
+        <ul class="result-features"><li>Mobiliario de lujo</li><li>All-inclusive</li><li>Staff bilingüe</li><li>100 impresiones mensuales</li></ul>
+        <div class="result-card-price">Bajo solicitud</div>
+        <div class="result-card-price-label">Precio sin IVA</div>
+        <div class="result-actions"><button class="btn-sm-green" onclick="showPage('contacto')">Solicitar precio</button><button class="btn-sm-olive" onclick="showPage('business')">Ver detalles</button></div>
+      </div>
+      <div class="result-card" data-format="torre" data-disp="inmediata">
+        <p class="result-card-tag">Torre Palmas</p>
+        <div class="avail-badge green"><span class="status-dot" style="width:6px;height:6px;margin:0"></span>Disponible ahora</div>
+        <h3 class="result-card-title">Oficina Corporativa</h3>
+        <p class="result-card-size">Torre Palmas · 67–214 m²</p>
+        <ul class="result-features"><li>100% Personalizable</li><li>Vistas al Parque Providencia</li><li>Estacionamiento techado</li><li>Domicilio fiscal</li></ul>
+        <div class="result-card-price">Bajo solicitud</div>
+        <div class="result-card-price-label">Precio según metraje</div>
+        <div class="result-actions"><button class="btn-sm-green" onclick="showPage('contacto')">Cotizar</button><button class="btn-sm-olive" onclick="showPage('torre')">Ver detalles</button></div>
+      </div>
+    </div>
+    <div style="margin-top:44px;padding:28px 32px;border:1px solid var(--olive-border);background:var(--olive-pale);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div>
+        <p style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--olive);margin-bottom:5px">¿No encuentras lo que buscas?</p>
+        <p style="font-size:13px;color:var(--ink-mid)">Contáctanos y te asesoramos para encontrar el espacio perfecto.</p>
+      </div>
+      <a href="https://wa.me/527225719944" class="whatsapp-btn" style="flex-shrink:0" target="_blank">💬 Consultar por WhatsApp</a>
+    </div>
+  </div>
+  <div style="padding:44px 56px;background:var(--surface);border-top:1px solid var(--olive-border)">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--ink);margin-bottom:20px">Leyenda de disponibilidad</h3>
+    <div style="display:flex;gap:28px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px"><div class="status-dot"></div><span style="font-size:13px;color:var(--ink-mid)">Disponible — Mudanza inmediata</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><div class="status-dot yellow"></div><span style="font-size:13px;color:var(--ink-mid)">Próximamente — Disponible pronto</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;background:#dc2626;border-radius:50%"></div><span style="font-size:13px;color:var(--ink-mid)">Ocupada — Lista de espera</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CONTACTO ══════════════ -->
+<div class="page" id="page-contacto">
+  <div class="product-page-hero" style="min-height:40vh">
+    <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+    <p class="hero-eyebrow">Contacto</p>
+    <h1 class="hero-h1" style="color:var(--white)">Conózcalo <em>usted mismo</em></h1>
+    <p class="hero-sub">Estamos listos para mostrarte el espacio ideal para tu empresa.</p>
+  </div>
+  <div class="section-light" style="padding-top:100px;padding-bottom:100px">
+    <div class="contact-section">
+      <div>
+        <p class="section-label">Canales de Contacto</p>
+        <h2 class="section-title" style="font-size:36px">Elige cómo <em>contactarnos</em></h2>
+        <div class="contact-channels">
+          <a href="https://wa.me/527225719944" class="channel-card" target="_blank">
+            <span class="channel-icon">💬</span>
+            <div class="channel-info"><div class="channel-type">WhatsApp</div><div class="channel-value">722 571 9944</div><div class="channel-hours">Respuesta inmediata</div></div>
+            <span class="channel-arrow">→</span>
+          </a>
+          <a href="tel:+527225719944" class="channel-card">
+            <span class="channel-icon">📞</span>
+            <div class="channel-info"><div class="channel-type">Teléfono</div><div class="channel-value">722 571 9944</div><div class="channel-hours">Lun–Vie · 8:00–18:30 hrs</div></div>
+            <span class="channel-arrow">→</span>
+          </a>
+          <a href="mailto:informes@torrepalmas.com" class="channel-card">
+            <span class="channel-icon">✉️</span>
+            <div class="channel-info"><div class="channel-type">Correo</div><div class="channel-value">informes@torrepalmas.com</div><div class="channel-hours">Respuesta en 24 hrs</div></div>
+            <span class="channel-arrow">→</span>
+          </a>
+        </div>
+        <div style="margin-top:32px;padding:28px;background:var(--olive-pale);border:1px solid var(--olive-border)">
+          <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--olive);margin-bottom:10px">Visítanos</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--ink);margin-bottom:6px">Av. Ignacio Comonfort 1312</p>
+          <p style="font-size:13px;color:var(--ink-low);margin-bottom:3px">Col. La Providencia, Metepec, Edo. de México</p>
+          <p style="font-size:12px;color:var(--ink-low)">Lunes a Viernes · 8:00–18:30 hrs</p>
+          <div style="display:flex;gap:10px;margin-top:18px">
+            <a href="https://maps.app.goo.gl/dqwFKaaLSqL8jTWA6" class="btn-sm-green" style="text-decoration:none;display:inline-flex;align-items:center" target="_blank">Google Maps</a>
+            <a href="https://maps.app.goo.gl/dqwFKaaLSqL8jTWA6" class="btn-sm-olive" style="text-decoration:none;display:inline-flex;align-items:center" target="_blank">Ubicación</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Formulario de Contacto</p>
+        <h2 class="section-title" style="font-size:36px">Agenda tu <em>visita</em></h2>
+        <p class="section-body" style="margin-bottom:28px">Un asesor se pondrá en contacto contigo en menos de 24 horas.</p>
+        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Nombre Completo *</label><input type="text" class="form-input" placeholder="Tu nombre" required></div>
+            <div class="form-group"><label class="form-label">Empresa</label><input type="text" class="form-input" placeholder="Nombre de tu empresa"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Teléfono *</label><input type="tel" class="form-input" placeholder="722 XXX XXXX" required></div>
+            <div class="form-group"><label class="form-label">Correo Electrónico *</label><input type="email" class="form-input" placeholder="tucorreo@empresa.com" required></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Producto de Interés *</label>
+            <select class="form-select" required>
+              <option value="">Selecciona una opción</option>
+              <option>Torre Palmas — Oficina corporativa</option>
+              <option>Business Center — Oficina equipada</option>
+              <option>Coworking</option>
+              <option>No estoy seguro</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Fecha Preferida de Visita</label><input type="date" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Mensaje (opcional)</label><textarea class="form-textarea" placeholder="Cuéntanos sobre tu empresa, número de colaboradores o necesidades específicas..."></textarea></div>
+          <button type="submit" class="form-submit">Agendar Visita</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas"></div>
+      <p class="footer-tagline">El mejor Centro de Negocios de Metepec.<br>Un proyecto de Inmobiliaria BTO.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">f</a><a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">li</a><a href="#" class="social-btn">w</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Navegación</p>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('home');return false;">Inicio</a></li>
+        <li><a href="#" onclick="showPage('nosotros');return false;">Nosotros</a></li>
+        <li><a href="#" onclick="showPage('ubicacion');return false;">Ubicación</a></li>
+        <li><a href="#" onclick="showPage('disponibilidad');return false;">Disponibilidad</a></li>
+        <li><a href="#" onclick="showPage('contacto');return false;">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Servicios</p>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('torre');return false;">Torre Palmas</a></li>
+        <li><a href="#" onclick="showPage('business');return false;">Business Center</a></li>
+        <li><a href="#" onclick="showPage('coworking');return false;">Coworking</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contacto</p>
+      <div class="footer-contact-item"><span>📱</span><span>722 571 9944</span></div>
+      <div class="footer-contact-item"><span>✉️</span><span>informes@torrepalmas.com</span></div>
+      <div class="footer-contact-item"><span>📍</span><span>Av. Ignacio Comonfort 1312, Col. La Providencia, Metepec, Edo. de Méx.</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Torre Palmas · www.torrepalmas.com</p>
+    <p class="footer-by">Inmobiliaria <span>BTO</span> — Renta de Oficinas &amp; Locales Comerciales</p>
+  </div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor=document.getElementById('cursor'), ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.transform=`translate(${mx-5}px,${my-5}px)`;});
+  (function anim(){rx+=(mx-rx)*0.11;ry+=(my-ry)*0.11;ring.style.transform=`translate(${rx-15}px,${ry-15}px)`;requestAnimationFrame(anim);})();
+
+  // NAV
+  const navEl = document.getElementById('nav');
+  // Pages that are light (white background at top)
+  const lightPages = ['nosotros','ubicacion','torre','business','coworking','disponibilidad','contacto'];
+  function updateNav(pageName) {
+    if (lightPages.includes(pageName)) {
+      navEl.classList.add('light'); navEl.classList.remove('scrolled');
+    } else {
+      navEl.classList.remove('light');
+    }
+  }
+  window.addEventListener('scroll',()=>{
+    const currentPage = document.querySelector('.page.active')?.id.replace('page-','');
+    if (lightPages.includes(currentPage)) {
+      navEl.classList.add('light');
+    } else {
+      navEl.classList.toggle('scrolled', window.scrollY > 40);
+      if (window.scrollY > 40) navEl.classList.remove('light');
+    }
+  });
+
+  // DROPDOWN
+  const dropLi=document.getElementById('dropLi');
+  function toggleDrop(){dropLi.classList.toggle('open');}
+  document.addEventListener('click',e=>{if(!dropLi.contains(e.target))dropLi.classList.remove('open');});
+
+  // PAGES
+  function showPage(name){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const t=document.getElementById('page-'+name);
+    if(t){t.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+    document.querySelectorAll('.nav-link').forEach(a=>a.classList.toggle('active',a.dataset.page===name));
+    const servPages=['torre','business','coworking'];
+    document.getElementById('dropBtn').classList.toggle('active',servPages.includes(name));
+    dropLi.classList.remove('open');
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('mobileServiceMenu').classList.remove('open');
+    updateNav(name);
+  }
+
+  // MOBILE NAV
+  function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open');}
+  function toggleMobileServiceMenu(){document.getElementById('mobileServiceMenu').classList.toggle('open');const caret=document.getElementById('serviceCaretMobile');caret.textContent=document.getElementById('mobileServiceMenu').classList.contains('open')?'▲':'▼';}
+
+  // FILTERS
+  function filterResults(){
+    const fmt=document.getElementById('filterFormato').value;
+    const disp=document.getElementById('filterDisp').value;
+    let count=0;
+    document.querySelectorAll('.result-card').forEach(c=>{
+      const show=(!fmt||c.dataset.format===fmt)&&(!disp||c.dataset.disp===disp);
+      c.style.display=show?'':'none'; if(show)count++;
+    });
+    document.getElementById('resultsTitle').textContent=count+(count===1?' espacio encontrado':' espacios encontrados');
+  }
+  function resetFilters(){
+    document.getElementById('filterFormato').value='';
+    document.getElementById('filterDisp').value='';
+    filterResults();
+  }
+
+  // FLOOR VISUALIZATION - PISO 3 & 4
+  const floorPlans = {
+    3: {
+      viewBox: '0 0 687.27 678.02',
+      image: 'images/Piso3_PlanoRecurso 9.png',
+      rooms: [
+        { id: '301', name: 'Oficina 301', area: '214 m²', status: 'occupied', points: '473.06 .21 473.06 208.45 687.06 208.45 687.06 .21 473.06 .21' },
+        { id: '302', name: 'Oficina 302', area: '148 m²', status: 'occupied', points: '321.88 1.39 321.88 147.39 .93 148.1 .21 1.39 321.88 1.39' },
+        { id: '303', name: 'Oficina 303', area: '131 m²', status: 'occupied', points: '321.88 147.76 321.88 278.92 .93 278.73 .21 147.76 321.88 147.76' },
+        { id: '304', name: 'Oficina 304', area: '121 m²', status: 'occupied', points: '321.88 278.89 321.88 399.96 .93 400.28 .21 278.89 321.88 278.89' },
+        { id: '305', name: 'Oficina 305', area: '131 m²', status: 'occupied', points: '321.88 400.43 321.88 531.55 .93 531.9 .21 400.43 321.88 400.43' },
+        { id: '306', name: 'Oficina 306', area: '147 m²', status: 'occupied', points: '.93 531.9 .27 677.82 421.66 677.82 421.46 498.94 371.93 499.6 321.91 499.6 321.91 531.55 .93 531.9' }
+      ]
+    },
+    4: {
+      viewBox: '0 0 711.96 701.77',
+      image: 'images/Piso4_PlanoRecurso 11.png',
+      rooms: [
+        { id: '401', name: 'Oficina 401', area: '222 m²', status: 'occupied', x: '488.96', y: '.21', width: '222.78', height: '221.87', type: 'rect' },
+        { id: '402', name: 'Oficina 402', area: '160 m²', status: 'occupied', points: '333.43 2.9 333.43 159.64 1.37 160.4 .62 2.9 333.43 2.9', type: 'polygon' },
+        { id: '403', name: 'Oficina 403', area: '131 m²', status: 'occupied', points: '333.38 156.77 333.38 287.78 1.32 288.42 .57 156.77 333.38 156.77', type: 'polygon' },
+        { id: '404', name: 'Oficina 404', area: '126 m²', status: 'occupied', points: '333.38 288.44 333.38 414.45 1.32 415.07 .57 288.44 333.38 288.44', type: 'polygon' },
+        { id: '405', name: 'Oficina 405', area: '130 m²', status: 'occupied', points: '333.38 414.37 333.38 544.66 1.32 545.29 .57 414.37 333.38 414.37', type: 'polygon' },
+        { id: '406', name: 'Oficina 406', area: '186 m²', status: 'occupied', points: '.88 544.33 .2 701.57 435.45 701.57 435.25 515.36 384.09 516.04 334.14 516.04 334.14 543.96 .88 544.33', type: 'polygon' },
+        { id: '407', name: 'Oficina 407', area: '251 m²', status: 'occupied', x: '488.96', y: '449.28', width: '222.78', height: '251.59', type: 'rect' }
+      ]
+    }
+  };
+
+  function updateFloorView(floorNumber) {
+    // Update active button
+    document.querySelectorAll('.floor-btn').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.floor) === floorNumber);
+    });
+
+    // Render floor plan
+    const floor = floorPlans[floorNumber];
+    const container = document.getElementById('floorSvgContainer');
+    
+    let svgRooms = floor.rooms.map(room => {
+      const statusClass = room.status;
+      if (room.type === 'rect') {
+        return `<rect id="room-${room.id}" class="room-unit ${statusClass}" data-room="${room.id}" data-name="${room.name}" data-area="${room.area}" data-status="${room.status}" x="${room.x}" y="${room.y}" width="${room.width}" height="${room.height}"/>`;
+      } else {
+        return `<polygon id="room-${room.id}" class="room-unit ${statusClass}" data-room="${room.id}" data-name="${room.name}" data-area="${room.area}" data-status="${room.status}" points="${room.points}"/>`;
+      }
+    }).join('');
+
+    container.innerHTML = `
+      <div class="floor-viewer">
+        <svg class="floor-svg" viewBox="${floor.viewBox}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <style>
+              .room-unit { fill: #e8f4f8; stroke: #333; stroke-width: 1.5; cursor: pointer; transition: all 0.3s ease; }
+              .room-unit:hover { fill: #b3e5fc; }
+              .room-unit.available { fill: #c8e6c9; }
+              .room-unit.soon { fill: #fff9c4; }
+              .room-unit.occupied { fill: #ffcccc; }
+            </style>
+          </defs>
+          <g id="rooms">${svgRooms}</g>
+        </svg>
+        <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">
+        <div class="room-tooltip" id="roomTooltip" style="display:none;"></div>
+      </div>
+    `;
+
+    // Attach event listeners to rooms
+    setupRoomListeners();
+  }
+
+  function setupRoomListeners() {
+    const roomPolygons = document.querySelectorAll('.room-unit');
+    const tooltip = document.getElementById('roomTooltip');
+    const svgContainer = document.querySelector('.floor-viewer');
+    
+    roomPolygons.forEach(room => {
+      room.addEventListener('click', function(e) {
+        showRoomInfo(this, e, tooltip, svgContainer);
+      });
+      
+      room.addEventListener('mouseenter', function() {
+        this.style.opacity = '0.8';
+      });
+      
+      room.addEventListener('mouseleave', function() {
+        this.style.opacity = '1';
+      });
+    });
+  }
+
+  function showRoomInfo(element, event, tooltip, container) {
+    const name = element.dataset.name;
+    const area = element.dataset.area;
+    const status = element.dataset.status;
+    const statusTexts = {
+      'available': 'Disponible inmediata',
+      'soon': 'Próximamente',
+      'occupied': 'Ocupada'
+    };
+    
+    tooltip.innerHTML = `<h4>${name}</h4><p><strong>Área:</strong> ${area}</p><p><strong>Estado:</strong> ${statusTexts[status]}</p>`;
+    
+    const rect = element.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    
+    tooltip.style.left = (rect.left - containerRect.left) + 'px';
+    tooltip.style.top = (rect.top - containerRect.top - 70) + 'px';
+    tooltip.style.display = 'block';
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    updateFloorView(3);
+  });
+
+  // FORM
+  function handleFormSubmit(e){
+    e.preventDefault();
+    const btn=e.target.querySelector('.form-submit');
+    btn.textContent='✓ Solicitud enviada — Te contactamos en 24 hrs';
+    btn.style.background='#0e7a3b';
+    setTimeout(()=>{btn.textContent='Agendar Visita';btn.style.background='';e.target.reset();},4000);
+  }
+
+  // SCROLL REVEAL
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.12});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Agendar Visita · Torre Palmas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Hero alineado con disponibilidad.html */
+    .product-page-hero { min-height: 44vh; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 72px 56px 96px; color: white; background: var(--ink); }
+    .product-page-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.3); z-index: 1; }
+    .product-page-hero .bg-lines { position: absolute; inset: 0; background: linear-gradient(rgba(107,124,92,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(107,124,92,0.06) 1px, transparent 1px); background-size: 60px 60px; z-index: 1; }
+    .product-page-hero .bg-glow { position: absolute; top: -80px; right: -80px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(20,153,75,0.1) 0%, transparent 68%); z-index: 1; }
+    .product-page-hero .hero-olive-line { position: absolute; bottom: 0; left: 0; width: 35%; height: 2px; background: linear-gradient(to right, var(--olive), transparent); z-index: 2; }
+    .product-page-hero > * { position: relative; z-index: 2; }
+    .product-page-hero .hero-eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: white; margin-bottom: 28px; }
+    .product-page-hero .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 600; line-height: 0.95; margin-bottom: 24px; }
+    .product-page-hero .hero-sub { font-size: 15px; font-weight: 300; line-height: 1.8; max-width: 500px; margin-bottom: 32px; opacity: 0.95; }
+    /* Los estilos de .contact-section, .channel-card, formulario y botones
+       se heredan de css/styles.css para igualar la referencia. */
+    @media (max-width: 1000px) {
+      .contact-section { grid-template-columns: 1fr !important; gap: 48px !important; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 22px; }
+      .hamburger { display: flex; }
+      .nav-links, .nav-cta { display: none; }
+      .product-page-hero { padding: 60px 22px 80px; min-height: 40vh; }
+      .section-light { padding: 80px 22px; }
+      .form-row { grid-template-columns: 1fr !important; }
+      .contact-channels { margin-bottom: 48px; }
+      .contact-section { grid-template-columns: 1fr !important; gap: 40px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="height: 40px; object-fit: contain;"></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link" data-page="home">Inicio</a></li>
+    <li><a href="nosotros.html" class="nav-link" data-page="nosotros">Nosotros</a></li>
+    <li><a href="ubicacion.html" class="nav-link" data-page="ubicacion">Ubicación</a></li>
+    <li id="dropLi">
+      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="servicios" onclick="toggleDrop();return false;">
+        Servicios <span class="caret"></span>
+      </button>
+      <div class="nav-dropdown" id="navDropdown">
+        <a href="torre-palmas.html"><span class="dd-icon">🏢</span>Torre Palmas</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="business-center.html"><span class="dd-icon">💼</span>Business Center</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="coworking.html"><span class="dd-icon">🤝</span>Coworking</a>
+      </div>
+    </li>
+    <li><a href="disponibilidad.html" class="nav-link" data-page="disponibilidad">Disponibilidad</a></li>
+  </ul>
+  <a href="contacto.html" class="nav-cta" style="text-decoration:none">Agendar Visita</a>
+  <button class="hamburger" onclick="toggleMobileNav()" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Cerrar menú">&times;</button>
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="ubicacion.html">Ubicación</a>
+  <div class="mobile-nav-section">
+    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Servicios <span id="serviceCaretMobile">▼</span></button>
+    <div class="mobile-nav-submenu" id="mobileServiceMenu">
+      <a href="torre-palmas.html">Torre Palmas</a>
+      <a href="business-center.html">Business Center</a>
+      <a href="coworking.html">Coworking</a>
+    </div>
+  </div>
+  <a href="disponibilidad.html">Disponibilidad</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="product-page-hero" style="min-height:44vh">
+  <div class="bg-lines"></div><div class="bg-glow"></div><div class="hero-olive-line"></div>
+  <p class="hero-eyebrow">Contacto</p>
+  <h1 class="hero-h1" style="color:var(--white)">Conózcalo <em>usted mismo</em></h1>
+  <p class="hero-sub">Estamos listos para mostrarte el espacio ideal para tu empresa.</p>
+</div>
+
+<div class="section-light" style="padding-top:100px;padding-bottom:100px">
+  <div class="contact-section">
+    <div>
+      <p class="section-label">Canales de Contacto</p>
+      <h2 class="section-title" style="font-size:36px">Elige cómo <em>contactarnos</em></h2>
+      <div class="contact-channels">
+        <a href="https://wa.me/527225719944" class="channel-card" target="_blank">
+          <span class="channel-icon">💬</span>
+          <div class="channel-info"><div class="channel-type">WhatsApp</div><div class="channel-value">722 571 9944</div><div class="channel-hours">Respuesta inmediata</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="tel:+527225719944" class="channel-card">
+          <span class="channel-icon">📞</span>
+          <div class="channel-info"><div class="channel-type">Teléfono</div><div class="channel-value">722 571 9944</div><div class="channel-hours">Lun–Vie · 8:00–18:30 hrs</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="mailto:informes@torrepalmas.com" class="channel-card">
+          <span class="channel-icon">✉️</span>
+          <div class="channel-info"><div class="channel-type">Correo</div><div class="channel-value">informes@torrepalmas.com</div><div class="channel-hours">Respuesta en 24 hrs</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+      </div>
+      <div style="margin-top:32px;padding:28px;background:var(--olive-pale);border:1px solid var(--olive-border)">
+        <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--olive);margin-bottom:10px">Visítanos</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--ink);margin-bottom:6px">Av. Ignacio Comonfort 1312</p>
+        <p style="font-size:13px;color:var(--ink-low);margin-bottom:3px">Col. La Providencia, Metepec, Edo. de México</p>
+        <p style="font-size:12px;color:var(--ink-low)">Lunes a Viernes · 8:00–18:30 hrs</p>
+        <div style="display:flex;gap:10px;margin-top:18px">
+          <a href="https://maps.app.goo.gl/dqwFKaaLSqL8jTWA6" class="btn-sm-green" target="_blank">Google Maps</a>
+          <a href="https://maps.app.goo.gl/dqwFKaaLSqL8jTWA6" class="btn-sm-olive" target="_blank">Ubicación</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label">Formulario de Contacto</p>
+      <h2 class="section-title" style="font-size:36px">Agenda tu <em>visita</em></h2>
+      <p class="section-body" style="margin-bottom:28px">Un asesor se pondrá en contacto contigo en menos de 24 horas.</p>
+      <form class="contact-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Nombre Completo *</label><input type="text" class="form-input" placeholder="Tu nombre" required></div>
+          <div class="form-group"><label class="form-label">Empresa</label><input type="text" class="form-input" placeholder="Nombre de tu empresa"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Teléfono *</label><input type="tel" class="form-input" placeholder="722 XXX XXXX" required></div>
+          <div class="form-group"><label class="form-label">Correo Electrónico *</label><input type="email" class="form-input" placeholder="tucorreo@empresa.com" required></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Producto de Interés *</label>
+          <select class="form-select" required>
+            <option value="">Selecciona una opción</option>
+            <option>Torre Palmas — Oficina corporativa</option>
+            <option>Business Center — Oficina equipada</option>
+            <option>Coworking</option>
+            <option>No estoy seguro</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Fecha Preferida de Visita</label><input type="date" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Mensaje (opcional)</label><textarea class="form-textarea" placeholder="Cuéntanos sobre tu empresa, número de colaboradores o necesidades específicas..."></textarea></div>
+        <button type="submit" class="form-submit">Agendar Visita</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas"></div>
+      <p class="footer-tagline">El mejor Centro de Negocios de Metepec.<br>Un proyecto de Inmobiliaria BTO.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">f</a><a href="#" class="social-btn">in</a><a href="#" class="social-btn">li</a><a href="#" class="social-btn">w</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Navegación</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="ubicacion.html">Ubicación</a></li>
+        <li><a href="disponibilidad.html">Disponibilidad</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Servicios</p>
+      <ul class="footer-links">
+        <li><a href="torre-palmas.html">Torre Palmas</a></li>
+        <li><a href="business-center.html">Business Center</a></li>
+        <li><a href="coworking.html">Coworking</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contacto</p>
+      <div class="footer-contact-item"><span>📱</span><span>722 571 9944</span></div>
+      <div class="footer-contact-item"><span>✉️</span><span>informes@torrepalmas.com</span></div>
+      <div class="footer-contact-item"><span>📍</span><span>Av. Ignacio Comonfort 1312, Col. La Providencia, Metepec, Edo. de Méx.</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Torre Palmas · www.torrepalmas.com</p>
+    <p class="footer-by">Inmobiliaria <span>BTO</span> — Renta de Oficinas &amp; Locales Comerciales</p>
+  </div>
+</footer>
+
+<script src="js/scripts.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadHeader();
+  });
+</script>
+</body>
+</html>
