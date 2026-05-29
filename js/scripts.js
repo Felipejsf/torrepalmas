@@ -146,33 +146,33 @@ const floorPlans = {
     ]
   },
   business: {
-    viewBox: '0 0 652.82 464.37',
+    viewBox: '0 0 704 490',
     image: 'images/Oficinas bussynes center.png',
     rooms: [
-      { id: 'A1a', name: 'A1a · Ejecutiva', area: '15 m²', status: 'available', type: 'path', d: 'M53.41,17.35H5.38c-.05,13.81-.09,27.62-.14,41.43,21.35-.01,42.69-.02,64.04-.04.11-2.84.22-5.68.34-8.52h21.49c.01-16.69.02-33.37.03-50.06l-37.74-.07v17.25Z' },
-      { id: 'A7b', name: 'A7b · Ejecutiva Plus', area: '17 m²', status: 'occupied', type: 'path', d: 'M93.53,0c28.99.01,57.97.03,86.96.04l.12,50.61c-29.01-.14-58.03-.28-87.04-.41-.01-16.74-.02-33.49-.04-50.23Z' },
-      { id: 'A1b', name: 'A1b · Ejecutiva', area: '12 m²', status: 'occupied', type: 'path', d: 'M5.38,60.24c21.31.1,42.62.2,63.93.31-.02,14.5-.04,29.01-.07,43.51-21.32.13-42.64.25-63.96.38.03-14.73.07-29.46.1-44.19Z' },
-      { id: 'A2', name: 'A2 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M5.38,106.3c21.41.06,42.83.11,64.24.17v47.99h-23.98v6.52c-13.43-.08-26.86-.16-40.3-.24.01-18.15.02-36.29.03-54.44Z' },
-      { id: 'A3', name: 'A3 · Corporativa Jr.', area: '25 m²', status: 'occupied', type: 'path', d: 'M5.38,163.43l40.81-.17c0,1.49,0,2.99,0,4.48h5.24c0-1.49,0-2.99,0-4.48l18.18.17c.02,34.39.05,68.77.07,103.16-21.44-.14-42.87-.28-64.31-.41v-102.74Z' },
-      { id: 'A4', name: 'A4 · Gerencial', area: '37 m²', status: 'available', type: 'path', d: 'M5,268.21c22.46.14,44.92.28,67.38.41v-17.9h39.92c.14,5.83.28,11.66.41,17.49,22.62.14,45.24.28,67.86.41v50.78H5.38c-.13-17.07-.25-34.13-.38-51.2Z' },
-      { id: 'A5', name: 'A5 · Ejecutiva Plus', area: '17 m²', status: 'available', type: 'path', d: 'M115.09,199.2h65.48v66.97c-21.95.14-43.91.28-65.86.41.13-22.46.25-44.92.38-67.38Z' },
-      { id: 'A7a', name: 'A7a · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M115,52.27h65.81l-.24,51.75h-65.48l-.09-51.75Z' },
-      { id: 'A6', name: 'A6 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M115.09,106.47l65.51.07c-.01,15.97-.02,31.95-.03,47.92h-33.78v6.21h-31.7v-54.2Z' },
-      { id: 'B1', name: 'B1 · Ejecutiva Large', area: '19 m²', status: 'available', type: 'path', d: 'M446.51,10.87h104.4c.01,15.81.02,31.62.03,47.44-34.72.01-69.44.02-104.16.04-.09-15.82-.18-31.65-.28-47.47Z' },
-      { id: 'B2', name: 'B2 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M446.64,60.75c21.45.08,42.89.17,64.34.25.17,17.03.35,34.06.52,51.09h-64.86v-51.34Z' },
-      { id: 'B3', name: 'B3 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M446.64,114.54h64.86v51.34c-18.53-.04-37.05-.07-55.58-.11.14-4.05.28-8.09.41-12.14-3.37-.05-6.74-.09-10.11-.14.14-12.98.27-25.97.41-38.95Z' },
-      { id: 'B4', name: 'B4 · Ejecutiva Large Plus', area: '22.5 m²', status: 'available', type: 'path', d: 'M446.64,168.33h64.86v90.43h-64.86v-90.43Z' },
-      { id: 'B5', name: 'Coworking', area: '', status: 'coworking', type: 'path', d: 'M557.46,218.35h94.94c.13,33.92.25,67.85.38,101.77-31.77-.14-63.55-.28-95.32-.41v-101.36Z' },
-      { id: 'B6', name: 'B6 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M557.49,114.54c30.91-.01,61.82-.02,92.74-.03.05,33.8.09,67.6.14,101.4h-92.88v-101.36Z' },
-      { id: 'B7', name: 'B7 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M557.49,10.7c31.78-.13,63.55-.25,95.33-.38l-.41,101.78h-94.91V10.7Z' },
-      { id: 'C1a', name: 'C1a · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M9.76,369.01h37.91c.14,29.9.28,59.8.42,89.7-15.94-.01-31.88-.02-47.82-.04-.09-26.47-.18-52.95-.28-79.42,3.25-3.42,6.51-6.83,9.76-10.25Z' },
-      { id: 'C1b', name: 'C1b · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M51.52,390.65c15.1-.02,30.19-.04,45.29-.07.08,23.59.16,47.17.23,70.76h-45.09v-2.66c-.42,0-.85.01-1.27.02l.83-68.05Z' },
-      { id: 'C2', name: 'C2 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M149.11,369.01h48.68v92.32c-32.62-.09-65.24-.18-97.86-.26-.1-23.48-.2-46.95-.3-70.43h49.48v-21.63Z' },
-      { id: 'C3', name: 'C3 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M201.1,368.98c16.36.01,32.73.02,49.1.03v21.63h49.06v70.69c-15.25,0-30.5-.02-45.75-.03,0-.68,0-1.36,0-2.04h-5.24l.04,2.04c-15.74.01-31.48.03-47.22.04,0-30.79,0-61.58.01-92.37Z' },
-      { id: 'C4a', name: 'C4a · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M301.7,390.65h47.66c.01,23.56.02,47.13.04,70.69-15.92-.03-31.83-.06-47.75-.08.02-23.54.03-47.07.05-70.61Z' },
-      { id: 'C4b', name: 'C4b · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M351.25,369.01h48.09v92.32c-16.04,0-32.08.02-48.12.02,0-30.78.02-61.56.03-92.35Z' },
-      { id: 'C5', name: 'C5 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M401.79,364.77h48.09v99.6h-48.09v-99.6Z' },
-      { id: 'C6', name: 'C6 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M456.44,364.77h45.82v99.6h-45.82v-99.6Z' }
+      { id: 'A1a', name: 'A1a · Ejecutiva', area: '15 m²', status: 'available', type: 'path', d: 'M94.4102 30.3498H46.3802C46.3302 44.1598 46.2902 57.9698 46.2402 71.7798C67.5902 71.7698 88.9302 71.7598 110.28 71.7398C110.39 68.8998 110.5 66.0598 110.62 63.2198H132.11C132.12 46.5298 132.13 29.8498 132.14 13.1598L94.4002 13.0898V30.3398L94.4102 30.3498Z' },
+      { id: 'A7b', name: 'A7b · Ejecutiva Plus', area: '17 m²', status: 'occupied', type: 'path', d: 'M134.529 13C163.519 13.01 192.499 13.03 221.489 13.04L221.609 63.65C192.599 63.51 163.579 63.37 134.569 63.24C134.559 46.5 134.549 29.75 134.529 13.01V13Z' },
+      { id: 'A1b', name: 'A1b · Ejecutiva', area: '12 m²', status: 'occupied', type: 'path', d: 'M46.3793 73.2383C67.6893 73.3383 88.9993 73.4383 110.309 73.5483C110.289 88.0483 110.269 102.558 110.239 117.058C88.9193 117.188 67.5993 117.308 46.2793 117.438C46.3093 102.708 46.3493 87.9783 46.3793 73.2483V73.2383Z' },
+      { id: 'A2', name: 'A2 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M46.3798 119.301C67.7898 119.361 89.2098 119.411 110.62 119.471V167.461H86.6398V173.981C73.2098 173.901 59.7798 173.821 46.3398 173.741C46.3498 155.591 46.3598 137.451 46.3698 119.301H46.3798Z' },
+      { id: 'A3', name: 'A3 · Corporativa Jr.', area: '25 m²', status: 'occupied', type: 'path', d: 'M46.3811 176.432L87.1911 176.262C87.1911 177.752 87.1911 179.252 87.1911 180.742H92.4311C92.4311 179.252 92.4311 177.752 92.4311 176.262L110.611 176.432C110.631 210.822 110.661 245.202 110.681 279.592C89.2411 279.452 67.8111 279.312 46.3711 279.182V176.442L46.3811 176.432Z' },
+      { id: 'A4', name: 'A4 · Gerencial', area: '37 m²', status: 'available', type: 'path', d: 'M46 281.209C68.46 281.349 90.92 281.489 113.38 281.619V263.719H153.3C153.44 269.549 153.58 275.379 153.71 281.209C176.33 281.349 198.95 281.489 221.57 281.619V332.399H46.38C46.25 315.329 46.13 298.269 46 281.199V281.209Z' },
+      { id: 'A5', name: 'A5 · Ejecutiva Plus', area: '17 m²', status: 'available', type: 'path', d: 'M156.091 212.199H221.571V279.169C199.621 279.309 177.661 279.449 155.711 279.579C155.841 257.119 155.961 234.659 156.091 212.199Z' },
+      { id: 'A7a', name: 'A7a · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M156 65.2695H221.81L221.57 117.02H156.09L156 65.2695Z' },
+      { id: 'A6', name: 'A6 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M156.09 119.469L221.6 119.539C221.59 135.509 221.58 151.489 221.57 167.459H187.79V173.669H156.09V119.469Z' },
+      { id: 'B1', name: 'B1 · Ejecutiva Large', area: '19 m²', status: 'available', type: 'path', d: 'M478.289 23.8711H582.689C582.699 39.6811 582.709 55.4911 582.719 71.3111C547.999 71.3211 513.279 71.3311 478.559 71.3511C478.469 55.5311 478.379 39.7011 478.279 23.8811L478.289 23.8711Z' },
+      { id: 'B2', name: 'B2 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M478.42 73.75C499.87 73.83 521.31 73.92 542.76 74C542.93 91.03 543.11 108.06 543.28 125.09H478.42V73.75Z' },
+      { id: 'B3', name: 'B3 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M478.42 127.539H543.28V178.879C524.75 178.839 506.23 178.809 487.7 178.769C487.84 174.719 487.98 170.679 488.11 166.629C484.74 166.579 481.37 166.539 478 166.489C478.14 153.509 478.27 140.519 478.41 127.539H478.42Z' },
+      { id: 'B4', name: 'B4 · Ejecutiva Large Plus', area: '22.5 m²', status: 'available', type: 'path', d: 'M478.42 181.328H543.28V271.758H478.42V181.328Z' },
+      { id: 'B5', name: 'Coworking', area: '', status: 'coworking', type: 'path', d: 'M589.24 231.352H684.18C684.31 265.272 684.43 299.202 684.56 333.122C652.79 332.982 621.01 332.842 589.24 332.712V231.352Z' },
+      { id: 'B6', name: 'B6 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M589.27 127.542C620.18 127.532 651.09 127.522 682.01 127.512C682.06 161.312 682.1 195.112 682.15 228.912H589.27V127.552V127.542Z' },
+      { id: 'B7', name: 'B7 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M589.27 23.7003C621.05 23.5703 652.82 23.4503 684.6 23.3203L684.19 125.1H589.28V23.7003H589.27Z' },
+      { id: 'C1a', name: 'C1a · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M50.77 380.01H88.68C88.82 409.91 88.96 439.81 89.1 469.71C73.16 469.7 57.22 469.69 41.28 469.67C41.19 443.2 41.1 416.72 41 390.25C44.25 386.83 47.51 383.42 50.76 380L50.77 380.01Z' },
+      { id: 'C1b', name: 'C1b · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M92.84 400.07C107.94 400.05 123.03 400.03 138.13 400C138.21 423.59 138.29 447.17 138.36 470.76H93.27V468.1C92.85 468.1 92.42 468.11 92 468.12L92.83 400.07H92.84Z' },
+      { id: 'C2', name: 'C2 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M189.48 379H238.16V471.32C205.54 471.23 172.92 471.14 140.3 471.06C140.2 447.58 140.1 424.11 140 400.63H189.48V379Z' },
+      { id: 'C3', name: 'C3 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M239.01 379.01C255.37 379.02 271.74 379.03 288.11 379.04V400.67H337.17V471.36C321.92 471.36 306.67 471.34 291.42 471.33C291.42 470.65 291.42 469.97 291.42 469.29H286.18L286.22 471.33C270.48 471.34 254.74 471.36 239 471.37C239 440.58 239 409.79 239.01 379V379.01Z' },
+      { id: 'C4a', name: 'C4a · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M335.001 400.5H382.661C382.671 424.06 382.681 447.63 382.701 471.19C366.781 471.16 350.871 471.13 334.951 471.11C334.971 447.57 334.981 424.04 335.001 400.5Z' },
+      { id: 'C4b', name: 'C4b · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M385.03 380.01H433.12V472.33C417.08 472.33 401.04 472.35 385 472.35C385 441.57 385.02 410.79 385.03 380V380.01Z' },
+      { id: 'C5', name: 'C5 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M433 374H481.09V473.6H433V374Z' },
+      { id: 'C6', name: 'C6 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M488 374H533.82V473.6H488V374Z' }
     ]
   }
 };
@@ -207,7 +207,7 @@ function updateFloorView(floorNumber) {
   container.innerHTML = `
     <div class="floor-viewer">
       <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">
-      <svg class="floor-svg" viewBox="${floor.viewBox}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="floor-svg" viewBox="${floor.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <style>
             .room-unit { fill: rgba(232,244,248,0.55); stroke: #333; stroke-width: 1.5; cursor: pointer; transition: filter 0.25s ease, stroke-width 0.25s ease; vector-effect: non-scaling-stroke; }
