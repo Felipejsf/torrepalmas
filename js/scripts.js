@@ -144,6 +144,36 @@ const floorPlans = {
       { id: '406', name: 'Oficina 406', area: '106 m²', status: 'occupied', points: '.88 544.33 .2 701.57 435.45 701.57 435.25 515.36 384.09 516.04 334.14 516.04 334.14 543.96 .88 544.33', type: 'polygon' },
       { id: '407', name: 'Oficina 407', area: '107 m²', status: 'occupied', x: '488.96', y: '449.28', width: '222.78', height: '251.59', type: 'rect' }
     ]
+  },
+  business: {
+    viewBox: '0 0 652.82 464.37',
+    image: 'images/Oficinas bussynes center.png',
+    rooms: [
+      { id: 'A1a', name: 'A1a · Ejecutiva', area: '15 m²', status: 'available', type: 'path', d: 'M53.41,17.35H5.38c-.05,13.81-.09,27.62-.14,41.43,21.35-.01,42.69-.02,64.04-.04.11-2.84.22-5.68.34-8.52h21.49c.01-16.69.02-33.37.03-50.06l-37.74-.07v17.25Z' },
+      { id: 'A7b', name: 'A7b · Ejecutiva Plus', area: '17 m²', status: 'occupied', type: 'path', d: 'M93.53,0c28.99.01,57.97.03,86.96.04l.12,50.61c-29.01-.14-58.03-.28-87.04-.41-.01-16.74-.02-33.49-.04-50.23Z' },
+      { id: 'A1b', name: 'A1b · Ejecutiva', area: '12 m²', status: 'occupied', type: 'path', d: 'M5.38,60.24c21.31.1,42.62.2,63.93.31-.02,14.5-.04,29.01-.07,43.51-21.32.13-42.64.25-63.96.38.03-14.73.07-29.46.1-44.19Z' },
+      { id: 'A2', name: 'A2 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M5.38,106.3c21.41.06,42.83.11,64.24.17v47.99h-23.98v6.52c-13.43-.08-26.86-.16-40.3-.24.01-18.15.02-36.29.03-54.44Z' },
+      { id: 'A3', name: 'A3 · Corporativa Jr.', area: '25 m²', status: 'occupied', type: 'path', d: 'M5.38,163.43l40.81-.17c0,1.49,0,2.99,0,4.48h5.24c0-1.49,0-2.99,0-4.48l18.18.17c.02,34.39.05,68.77.07,103.16-21.44-.14-42.87-.28-64.31-.41v-102.74Z' },
+      { id: 'A4', name: 'A4 · Gerencial', area: '37 m²', status: 'available', type: 'path', d: 'M5,268.21c22.46.14,44.92.28,67.38.41v-17.9h39.92c.14,5.83.28,11.66.41,17.49,22.62.14,45.24.28,67.86.41v50.78H5.38c-.13-17.07-.25-34.13-.38-51.2Z' },
+      { id: 'A5', name: 'A5 · Ejecutiva Plus', area: '17 m²', status: 'available', type: 'path', d: 'M115.09,199.2h65.48v66.97c-21.95.14-43.91.28-65.86.41.13-22.46.25-44.92.38-67.38Z' },
+      { id: 'A7a', name: 'A7a · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M115,52.27h65.81l-.24,51.75h-65.48l-.09-51.75Z' },
+      { id: 'A6', name: 'A6 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M115.09,106.47l65.51.07c-.01,15.97-.02,31.95-.03,47.92h-33.78v6.21h-31.7v-54.2Z' },
+      { id: 'B1', name: 'B1 · Ejecutiva Large', area: '19 m²', status: 'available', type: 'path', d: 'M446.51,10.87h104.4c.01,15.81.02,31.62.03,47.44-34.72.01-69.44.02-104.16.04-.09-15.82-.18-31.65-.28-47.47Z' },
+      { id: 'B2', name: 'B2 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M446.64,60.75c21.45.08,42.89.17,64.34.25.17,17.03.35,34.06.52,51.09h-64.86v-51.34Z' },
+      { id: 'B3', name: 'B3 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M446.64,114.54h64.86v51.34c-18.53-.04-37.05-.07-55.58-.11.14-4.05.28-8.09.41-12.14-3.37-.05-6.74-.09-10.11-.14.14-12.98.27-25.97.41-38.95Z' },
+      { id: 'B4', name: 'B4 · Ejecutiva Large Plus', area: '22.5 m²', status: 'available', type: 'path', d: 'M446.64,168.33h64.86v90.43h-64.86v-90.43Z' },
+      { id: 'B5', name: 'Coworking', area: '', status: 'coworking', type: 'path', d: 'M557.46,218.35h94.94c.13,33.92.25,67.85.38,101.77-31.77-.14-63.55-.28-95.32-.41v-101.36Z' },
+      { id: 'B6', name: 'B6 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M557.49,114.54c30.91-.01,61.82-.02,92.74-.03.05,33.8.09,67.6.14,101.4h-92.88v-101.36Z' },
+      { id: 'B7', name: 'B7 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M557.49,10.7c31.78-.13,63.55-.25,95.33-.38l-.41,101.78h-94.91V10.7Z' },
+      { id: 'C1a', name: 'C1a · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M9.76,369.01h37.91c.14,29.9.28,59.8.42,89.7-15.94-.01-31.88-.02-47.82-.04-.09-26.47-.18-52.95-.28-79.42,3.25-3.42,6.51-6.83,9.76-10.25Z' },
+      { id: 'C1b', name: 'C1b · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M51.52,390.65c15.1-.02,30.19-.04,45.29-.07.08,23.59.16,47.17.23,70.76h-45.09v-2.66c-.42,0-.85.01-1.27.02l.83-68.05Z' },
+      { id: 'C2', name: 'C2 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M149.11,369.01h48.68v92.32c-32.62-.09-65.24-.18-97.86-.26-.1-23.48-.2-46.95-.3-70.43h49.48v-21.63Z' },
+      { id: 'C3', name: 'C3 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M201.1,368.98c16.36.01,32.73.02,49.1.03v21.63h49.06v70.69c-15.25,0-30.5-.02-45.75-.03,0-.68,0-1.36,0-2.04h-5.24l.04,2.04c-15.74.01-31.48.03-47.22.04,0-30.79,0-61.58.01-92.37Z' },
+      { id: 'C4a', name: 'C4a · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M301.7,390.65h47.66c.01,23.56.02,47.13.04,70.69-15.92-.03-31.83-.06-47.75-.08.02-23.54.03-47.07.05-70.61Z' },
+      { id: 'C4b', name: 'C4b · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M351.25,369.01h48.09v92.32c-16.04,0-32.08.02-48.12.02,0-30.78.02-61.56.03-92.35Z' },
+      { id: 'C5', name: 'C5 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M401.79,364.77h48.09v99.6h-48.09v-99.6Z' },
+      { id: 'C6', name: 'C6 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M456.44,364.77h45.82v99.6h-45.82v-99.6Z' }
+    ]
   }
 };
 
@@ -157,18 +187,18 @@ function updateFloorView(floorNumber) {
   const container = document.getElementById('floorSvgContainer');
   if (!container) return;
 
-  // Business Center: planos vectoriales separados (Secciones A, B, C)
-  if (floorNumber === 'business') { renderBusinessCenter(container); return; }
-
   const floor = floorPlans[floorNumber];
   if (!floor) return;
 
-  const statusLabel = s => s === 'occupied' ? 'Ocupada' : s === 'available' ? 'Disponible' : 'Próximamente';
+  const statusLabel = s => s === 'occupied' ? 'Ocupada' : s === 'available' ? 'Disponible' : s === 'coworking' ? 'Coworking' : 'Próximamente';
   let svgRooms = floor.rooms.map(room => {
     const statusClass = room.status;
-    const a11y = `tabindex="0" role="button" aria-label="${room.name}, ${room.area}, ${statusLabel(room.status)}"`;
+    const areaPart = room.area ? ', ' + room.area : '';
+    const a11y = `tabindex="0" role="button" aria-label="${room.name}${areaPart}, ${statusLabel(room.status)}"`;
     if (room.type === 'rect') {
       return `<rect id="room-${room.id}" class="room-unit ${statusClass}" data-room="${room.id}" data-name="${room.name}" data-area="${room.area}" data-status="${room.status}" ${a11y} x="${room.x}" y="${room.y}" width="${room.width}" height="${room.height}"/>`;
+    } else if (room.type === 'path') {
+      return `<path id="room-${room.id}" class="room-unit ${statusClass}" data-room="${room.id}" data-name="${room.name}" data-area="${room.area}" data-status="${room.status}" ${a11y} d="${room.d}"/>`;
     } else {
       return `<polygon id="room-${room.id}" class="room-unit ${statusClass}" data-room="${room.id}" data-name="${room.name}" data-area="${room.area}" data-status="${room.status}" ${a11y} points="${room.points}"/>`;
     }
@@ -183,6 +213,7 @@ function updateFloorView(floorNumber) {
             .room-unit.available { fill: #c8e6c9; }
             .room-unit.soon { fill: #fff9c4; }
             .room-unit.occupied { fill: #ffcccc; }
+            .room-unit.coworking { fill: #a7d8c8; }
             .room-unit:hover { filter: brightness(0.88); stroke-width: 2.5; }
           </style>
         </defs>
@@ -192,47 +223,6 @@ function updateFloorView(floorNumber) {
       <div class="room-tooltip" id="roomTooltip" style="display:none;"></div>
     </div>
   `;
-
-  setupRoomListeners();
-}
-
-// Business Center: arma los 3 planos vectoriales (A y B arriba, C abajo a lo ancho)
-function renderBusinessCenter(container) {
-  const tpl = document.getElementById('bcTemplates');
-  if (!tpl) { container.innerHTML = '<p style="padding:24px;color:#7a8574">Plano del Business Center no disponible.</p>'; return; }
-
-  container.innerHTML = '<div class="floor-viewer"><div class="bc-layout"></div><div class="room-tooltip" id="roomTooltip" style="display:none;"></div></div>';
-  const layout = container.querySelector('.bc-layout');
-
-  tpl.querySelectorAll('svg').forEach(svg => {
-    const clone = svg.cloneNode(true);
-    const section = clone.dataset.section || '';
-    clone.removeAttribute('hidden');
-
-    clone.querySelectorAll('path').forEach(p => {
-      const status = p.getAttribute('data-status') || 'occupied';
-      const area = p.getAttribute('data-area') || '';
-      const statusText = status === 'occupied' ? 'Ocupada' : status === 'available' ? 'Disponible' : status === 'coworking' ? 'Coworking' : 'Próximamente';
-      const officeName = p.getAttribute('data-name') || ((status === 'coworking' ? 'Coworking ' : 'Oficina ') + p.id);
-      p.setAttribute('class', 'room-unit ' + status);
-      p.setAttribute('data-name', officeName);
-      p.setAttribute('data-area', area);
-      p.setAttribute('data-status', status);
-      p.setAttribute('data-room', section + '-' + p.id);
-      p.setAttribute('tabindex', '0');
-      p.setAttribute('role', 'button');
-      p.setAttribute('aria-label', officeName + (area ? ', ' + area : '') + ', ' + statusText);
-    });
-
-    const block = document.createElement('div');
-    block.className = 'bc-block' + (section === 'C' ? ' full' : '');
-    const label = document.createElement('div');
-    label.className = 'bc-block-label';
-    label.textContent = 'Sección ' + section;
-    block.appendChild(label);
-    block.appendChild(clone);
-    layout.appendChild(block);
-  });
 
   setupRoomListeners();
 }
