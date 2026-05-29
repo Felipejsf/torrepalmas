@@ -67,7 +67,11 @@
     .why-visual-bg-img:nth-child(4) { animation-delay: 12s; background-image: url('images/portada.jpeg'); }
     .why-visual-bg-img:nth-child(5) { animation-delay: 16s; background-image: url('images/CW 1.jpeg'); }
     .why-visual-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); z-index: 3; }
-    .why-visual-content { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; z-index: 4; }
+    .why-visual-content { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; z-index: 4; padding: 24px; box-sizing: border-box; }
+    .why-visual-location { font-family:'Cormorant Garamond',serif; font-size:11px; letter-spacing:0.28em; color:rgba(107,124,92,0.7); text-transform:uppercase; margin-bottom:20px; text-align:center; }
+    .why-badge-row { display:flex; gap:14px; margin-top:14px; flex-wrap:wrap; justify-content:center; }
+    .why-badge-sm { padding:16px 22px; }
+    .why-badge-sm .why-badge-num { font-size:30px; }
     .why-glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:320px; height:320px; background:radial-gradient(circle, rgba(20,153,75,0.1) 0%, transparent 70%); pointer-events:none; }
     .why-badge { border: 1px solid var(--green); padding: 22px 28px; text-align: center; }
     .why-badge-num { font-family:'Cormorant Garamond',serif; font-size:50px; font-weight:600; color:var(--white); line-height:1; }
@@ -105,8 +109,8 @@
     @media (max-width:1100px) {
       .products-grid { grid-template-columns:1fr; }
       .why-section { grid-template-columns:1fr; }
-      .why-visual { height:280px; }
-      .why-visual-content { top:40px; bottom:40px; left:0; right:0; justify-content:flex-start; padding-bottom:80px; }
+      .why-visual { height:380px; }
+      .why-visual-content { padding: 40px 24px; gap: 14px; }
       .amenidades-grid { grid-template-columns:1fr 1fr; }
       .olive-band { grid-template-columns:1fr 1fr; }
       .why-grid { grid-template-columns:1fr 1fr; }
@@ -121,6 +125,15 @@
       .amenidades-grid { grid-template-columns:1fr; }
       .why-grid { grid-template-columns:1fr; }
       .cta-section { padding:80px 22px; }
+      /* Why-visual: más espacio en móvil para que los badges respiren */
+      .why-visual { height: auto; min-height: 360px; padding: 56px 0; }
+      .why-visual-content { position: relative; inset: auto; padding: 0 24px; gap: 12px; }
+      .why-visual-location { font-size: 10px; letter-spacing: 0.22em; margin-bottom: 8px; }
+      .why-badge { padding: 18px 26px; }
+      .why-badge-num { font-size: 40px; }
+      .why-badge-sm { padding: 12px 18px; }
+      .why-badge-sm .why-badge-num { font-size: 24px; }
+      .why-badge-row { gap: 10px; margin-top: 6px; }
     }
   </style>
 </head>
@@ -281,11 +294,11 @@
       <div class="why-glow"></div>
       <div class="why-olive-bar"></div>
       <div class="why-visual-content">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.28em;color:rgba(107,124,92,0.5);text-transform:uppercase;margin-bottom:20px">Metepec · Edo. de México</div>
+        <div class="why-visual-location">Metepec · Edo. de México</div>
         <div class="why-badge"><div class="why-badge-num">#1</div><div class="why-badge-text">Centro de Negocios</div></div>
-        <div style="display:flex;gap:14px;margin-top:14px">
-          <div class="why-badge" style="padding:16px 22px"><div class="why-badge-num" style="font-size:30px">2026</div><div class="why-badge-text">Operando</div></div>
-          <div class="why-badge" style="padding:16px 22px"><div class="why-badge-num" style="font-size:30px">A+</div><div class="why-badge-text">Categoría</div></div>
+        <div class="why-badge-row">
+          <div class="why-badge why-badge-sm"><div class="why-badge-num">2026</div><div class="why-badge-text">Operando</div></div>
+          <div class="why-badge why-badge-sm"><div class="why-badge-num">A+</div><div class="why-badge-text">Categoría</div></div>
         </div>
       </div>
     </div>
