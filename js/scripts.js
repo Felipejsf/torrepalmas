@@ -206,20 +206,20 @@ function updateFloorView(floorNumber) {
 
   container.innerHTML = `
     <div class="floor-viewer">
-      <svg class="floor-svg" viewBox="${floor.viewBox}" xmlns="http://www.w3.org/2000/svg">
+      <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">
+      <svg class="floor-svg" viewBox="${floor.viewBox}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <style>
-            .room-unit { fill: #e8f4f8; stroke: #333; stroke-width: 1.5; cursor: pointer; transition: filter 0.25s ease, stroke-width 0.25s ease; }
-            .room-unit.available { fill: #c8e6c9; }
-            .room-unit.soon { fill: #fff9c4; }
-            .room-unit.occupied { fill: #ffcccc; }
-            .room-unit.coworking { fill: #a7d8c8; }
+            .room-unit { fill: rgba(232,244,248,0.55); stroke: #333; stroke-width: 1.5; cursor: pointer; transition: filter 0.25s ease, stroke-width 0.25s ease; vector-effect: non-scaling-stroke; }
+            .room-unit.available { fill: rgba(200,230,201,0.7); }
+            .room-unit.soon { fill: rgba(255,249,196,0.7); }
+            .room-unit.occupied { fill: rgba(255,204,204,0.65); }
+            .room-unit.coworking { fill: rgba(167,216,200,0.7); }
             .room-unit:hover { filter: brightness(0.88); stroke-width: 2.5; }
           </style>
         </defs>
         <g id="rooms">${svgRooms}</g>
       </svg>
-      <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">
       <div class="room-tooltip" id="roomTooltip" style="display:none;"></div>
     </div>
   `;
