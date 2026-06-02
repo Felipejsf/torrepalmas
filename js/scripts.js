@@ -161,14 +161,14 @@ const floorPlans = {
       { id: 'B1', name: 'B1 · Ejecutiva Large', area: '19 m²', status: 'available', type: 'path', d: 'M478.289 23.8711H582.689C582.699 39.6811 582.709 55.4911 582.719 71.3111C547.999 71.3211 513.279 71.3311 478.559 71.3511C478.469 55.5311 478.379 39.7011 478.279 23.8811L478.289 23.8711Z' },
       { id: 'B2', name: 'B2 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M478.42 73.75C499.87 73.83 521.31 73.92 542.76 74C542.93 91.03 543.11 108.06 543.28 125.09H478.42V73.75Z' },
       { id: 'B3', name: 'B3 · Ejecutiva', area: '13 m²', status: 'occupied', type: 'path', d: 'M478.42 127.539H543.28V178.879C524.75 178.839 506.23 178.809 487.7 178.769C487.84 174.719 487.98 170.679 488.11 166.629C484.74 166.579 481.37 166.539 478 166.489C478.14 153.509 478.27 140.519 478.41 127.539H478.42Z' },
-      { id: 'B4', name: 'B4 · Ejecutiva Large Plus', area: '22.5 m²', status: 'available', type: 'path', d: 'M478.42 181.328H543.28V271.758H478.42V181.328Z' },
-      { id: 'B5', name: 'Coworking', area: '', status: 'coworking', type: 'path', d: 'M589.24 231.352H684.18C684.31 265.272 684.43 299.202 684.56 333.122C652.79 332.982 621.01 332.842 589.24 332.712V231.352Z' },
+      { id: 'B4', name: 'B4 · Ejecutiva Large Plus', area: '22.5 m²', status: 'occupied', type: 'path', d: 'M478.42 181.328H543.28V271.758H478.42V181.328Z' },
+      { id: 'B5', name: 'B5 · Ejecutiva', area: '', status: 'occupied', type: 'path', d: 'M589.24 231.352H684.18C684.31 265.272 684.43 299.202 684.56 333.122C652.79 332.982 621.01 332.842 589.24 332.712V231.352Z' },
       { id: 'B6', name: 'B6 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M589.27 127.542C620.18 127.532 651.09 127.522 682.01 127.512C682.06 161.312 682.1 195.112 682.15 228.912H589.27V127.552V127.542Z' },
       { id: 'B7', name: 'B7 · Gerencial', area: '37 m²', status: 'occupied', type: 'path', d: 'M589.27 23.7003C621.05 23.5703 652.82 23.4503 684.6 23.3203L684.19 125.1H589.28V23.7003H589.27Z' },
-      { id: 'C1a', name: 'C1a · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M50.77 380.01H88.68C88.82 409.91 88.96 439.81 89.1 469.71C73.16 469.7 57.22 469.69 41.28 469.67C41.19 443.2 41.1 416.72 41 390.25C44.25 386.83 47.51 383.42 50.76 380L50.77 380.01Z' },
+      { id: 'C1a', name: 'Coworking', area: '', status: 'coworking', type: 'path', d: 'M50.77 380.01H88.68C88.82 409.91 88.96 439.81 89.1 469.71C73.16 469.7 57.22 469.69 41.28 469.67C41.19 443.2 41.1 416.72 41 390.25C44.25 386.83 47.51 383.42 50.76 380L50.77 380.01Z' },
       { id: 'C1b', name: 'C1b · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M92.84 400.07C107.94 400.05 123.03 400.03 138.13 400C138.21 423.59 138.29 447.17 138.36 470.76H93.27V468.1C92.85 468.1 92.42 468.11 92 468.12L92.83 400.07H92.84Z' },
       { id: 'C2', name: 'C2 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M189.48 379H238.16V471.32C205.54 471.23 172.92 471.14 140.3 471.06C140.2 447.58 140.1 424.11 140 400.63H189.48V379Z' },
-      { id: 'C3', name: 'C3 · Corporativa', area: '31 m²', status: 'available', type: 'path', d: 'M239.01 379.01C255.37 379.02 271.74 379.03 288.11 379.04V400.67H337.17V471.36C321.92 471.36 306.67 471.34 291.42 471.33C291.42 470.65 291.42 469.97 291.42 469.29H286.18L286.22 471.33C270.48 471.34 254.74 471.36 239 471.37C239 440.58 239 409.79 239.01 379V379.01Z' },
+      { id: 'C3', name: 'C3 · Corporativa', area: '31 m²', status: 'occupied', type: 'path', d: 'M239.01 379.01C255.37 379.02 271.74 379.03 288.11 379.04V400.67H337.17V471.36C321.92 471.36 306.67 471.34 291.42 471.33C291.42 470.65 291.42 469.97 291.42 469.29H286.18L286.22 471.33C270.48 471.34 254.74 471.36 239 471.37C239 440.58 239 409.79 239.01 379V379.01Z' },
       { id: 'C4a', name: 'C4a · Ejecutiva', area: '14.5 m²', status: 'occupied', type: 'path', d: 'M335.001 400.5H382.661C382.671 424.06 382.681 447.63 382.701 471.19C366.781 471.16 350.871 471.13 334.951 471.11C334.971 447.57 334.981 424.04 335.001 400.5Z' },
       { id: 'C4b', name: 'C4b · Ejecutiva', area: '16.5 m²', status: 'occupied', type: 'path', d: 'M385.03 380.01H433.12V472.33C417.08 472.33 401.04 472.35 385 472.35C385 441.57 385.02 410.79 385.03 380V380.01Z' },
       { id: 'C5', name: 'C5 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M433 374H481.09V473.6H433V374Z' },
@@ -342,4 +342,91 @@ initScrollReveal();
 document.addEventListener('DOMContentLoaded', () => {
   updateFloorView(3);
   updateNav('home');
+  initGallery();
 });
+
+// ── GALERÍA + LIGHTBOX ──
+function initGallery() {
+  const items = document.querySelectorAll('.gallery-item');
+  if (!items.length) return;
+
+  // Crear lightbox una sola vez (si no existe)
+  let lb = document.getElementById('galleryLightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'galleryLightbox';
+    lb.className = 'gallery-lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-label', 'Galería de imágenes');
+    lb.innerHTML = `
+      <button class="gallery-lightbox-close" aria-label="Cerrar">✕</button>
+      <button class="gallery-lightbox-nav prev" aria-label="Anterior">‹</button>
+      <img alt="">
+      <button class="gallery-lightbox-nav next" aria-label="Siguiente">›</button>
+      <div class="gallery-lightbox-count"></div>
+    `;
+    document.body.appendChild(lb);
+  }
+
+  // Recolectar imágenes por galería (data-gallery agrupa)
+  const galleries = {};
+  items.forEach(item => {
+    const img = item.querySelector('img');
+    if (!img) return;
+    const key = item.dataset.gallery || 'default';
+    if (!galleries[key]) galleries[key] = [];
+    galleries[key].push(img.src);
+    item.dataset.galleryIdx = galleries[key].length - 1;
+  });
+
+  let currentGallery = [];
+  let currentIdx = 0;
+  const lbImg = lb.querySelector('img');
+  const lbCount = lb.querySelector('.gallery-lightbox-count');
+
+  const show = idx => {
+    if (!currentGallery.length) return;
+    currentIdx = (idx + currentGallery.length) % currentGallery.length;
+    lbImg.src = currentGallery[currentIdx];
+    lbCount.textContent = `${currentIdx + 1} / ${currentGallery.length}`;
+  };
+
+  const open = (gKey, idx) => {
+    currentGallery = galleries[gKey] || [];
+    show(idx);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      open(item.dataset.gallery || 'default', Number(item.dataset.galleryIdx) || 0);
+    });
+    // Accesibilidad: Enter abre el lightbox cuando tiene foco
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(item.dataset.gallery || 'default', Number(item.dataset.galleryIdx) || 0);
+      }
+    });
+  });
+
+  lb.querySelector('.gallery-lightbox-close').addEventListener('click', close);
+  lb.querySelector('.gallery-lightbox-nav.prev').addEventListener('click', e => { e.stopPropagation(); show(currentIdx - 1); });
+  lb.querySelector('.gallery-lightbox-nav.next').addEventListener('click', e => { e.stopPropagation(); show(currentIdx + 1); });
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(currentIdx - 1);
+    else if (e.key === 'ArrowRight') show(currentIdx + 1);
+  });
+}
