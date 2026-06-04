@@ -178,10 +178,7 @@ const floorPlans = {
   coworking: {
     viewBox: '0 0 743 1145',
     image: 'images/coworking-plano.png',
-    rooms: [
-      // Sala principal de coworking (área de mesa grande con 12 lugares)
-      { id: 'CW-main', name: 'Coworking · Área principal', area: '17.5 m² · 12 lugares', status: 'coworking', type: 'rect', x: '30', y: '80', width: '700', height: '1050' }
-    ]
+    rooms: []
   }
 };
 
@@ -218,9 +215,9 @@ function updateFloorView(floorNumber) {
   const isPortrait = vbParts.length === 4 && vbParts[3] > vbParts[2];
   const viewerStyle = isPortrait ? 'style="max-width:460px"' : '';
 
-  container.innerHTML = `
-    <div class="floor-viewer" ${viewerStyle}>
-      <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">
+  // Si el plano no tiene habitaciones interactivas (p.ej. Coworking),
+  // solo se muestra la imagen — sin SVG overlay ni tooltip.
+  const svgOverlay = floor.rooms.length > 0 ? `
       <svg class="floor-svg" viewBox="${floor.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <style>
@@ -235,7 +232,11 @@ function updateFloorView(floorNumber) {
         </defs>
         <g id="rooms">${svgRooms}</g>
       </svg>
-      <div class="room-tooltip" id="roomTooltip" style="display:none;"></div>
+      <div class="room-tooltip" id="roomTooltip" style="display:none;"></div>` : '';
+
+  container.innerHTML = `
+    <div class="floor-viewer" ${viewerStyle}>
+      <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">${svgOverlay}
     </div>
   `;
 
