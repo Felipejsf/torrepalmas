@@ -67,7 +67,8 @@
     .legend-dot.available { background: var(--green); }
     .legend-dot.soon { background: #eab308; }
     .legend-dot.occupied { background: #dc2626; }
-    .legend-dot.coworking { background: #2bb89a; }
+    .legend-dot.coworking { background: var(--blue); }
+    .legend-dot.reserved { background: #f59e0b; }
     .floor-nav { display: flex; gap: 14px; margin-top: 4px; flex-wrap: wrap; }
     .floor-btn { padding: 14px 32px; border: 1.5px solid var(--olive-border); background: white; color: var(--ink); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 10px; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s, background 0.25s, color 0.25s, border-color 0.25s; }
     .floor-btn:hover { border-color: var(--green); color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 18px rgba(20,153,75,0.14); }
@@ -138,6 +139,8 @@
     .legend-dot-full.available { background: var(--green); }
     .legend-dot-full.soon { background: #eab308; }
     .legend-dot-full.occupied { background: #dc2626; }
+    .legend-dot-full.reserved { background: #f59e0b; }
+    .legend-dot-full.coworking { background: var(--blue); }
     .legend-item-full span { font-size: 13px; color: var(--ink-mid); }
 
     /* CTA Box */
@@ -177,14 +180,13 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="nav-logo"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="height: 40px; object-fit: contain;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="object-fit: contain;"></a>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-link" data-page="home">Inicio</a></li>
     <li><a href="nosotros.html" class="nav-link" data-page="nosotros">Nosotros</a></li>
     <li><a href="ubicacion.html" class="nav-link" data-page="ubicacion">Ubicación</a></li>
     <li id="dropLi">
-      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="servicios" onclick="toggleDrop();return false;">
-        Servicios <span class="caret"></span>
+      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="espacios" onclick="toggleDrop();return false;">
+        Espacios <span class="caret"></span>
       </button>
       <div class="nav-dropdown" id="navDropdown">
         <a href="torre-palmas.html"><span class="dd-icon">🏢</span>Torre Palmas</a>
@@ -202,11 +204,10 @@
 
 <div class="mobile-nav" id="mobileNav">
   <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Cerrar menú">&times;</button>
-  <a href="index.html">Inicio</a>
   <a href="nosotros.html">Nosotros</a>
   <a href="ubicacion.html">Ubicación</a>
   <div class="mobile-nav-section">
-    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Servicios <span id="serviceCaretMobile">▼</span></button>
+    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Espacios <span id="serviceCaretMobile">▼</span></button>
     <div class="mobile-nav-submenu" id="mobileServiceMenu">
       <a href="torre-palmas.html">Torre Palmas</a>
       <a href="business-center.html">Business Center</a>
@@ -233,7 +234,11 @@
     <div class="floor-legend">
       <div class="legend-item">
         <div class="legend-dot available"></div>
-        <span>Disponible inmediata</span>
+        <span>Disponible</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot reserved"></div>
+        <span>Reservada</span>
       </div>
       <div class="legend-item">
         <div class="legend-dot soon"></div>
@@ -283,8 +288,10 @@
       <label class="filter-label" for="filterDisp">Disponibilidad</label>
       <select class="filter-select" id="filterDisp" onchange="filterResults()">
         <option value="">Cualquier disponibilidad</option>
-        <option value="inmediata">Inmediata</option>
-        <option value="pronto">En 1 mes</option>
+        <option value="inmediata">Disponible ahora</option>
+        <option value="pronto">Próximamente</option>
+        <option value="reservada">Reservada</option>
+        <option value="ocupada">Ocupada</option>
       </select>
     </div>
     <button class="filter-btn" onclick="filterResults()">Buscar</button>
@@ -312,21 +319,21 @@
     <div class="result-card" data-format="business" data-disp="inmediata">
       <p class="result-card-tag">Business Center</p>
       <div class="avail-badge green"><span class="status-dot"></span>Disponible ahora</div>
-      <h3 class="result-card-title">Ejecutiva Large Plus</h3>
-      <p class="result-card-size">Business Center · 22 m²</p>
-      <ul class="result-features"><li>Mobiliario de lujo</li><li>All-inclusive</li><li>Staff bilingüe</li><li>100 impresiones mensuales</li></ul>
-      <div class="result-card-price">Bajo solicitud</div>
-      <div class="result-card-price-label">Precio sin IVA</div>
-      <div class="result-actions"><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Solicitar precio</a><a href="business-center.html" class="btn-sm-olive" style="text-decoration:none">Ver detalles</a></div>
+      <h3 class="result-card-title">Oficinas Ejecutivas</h3>
+      <p class="result-card-size">Business Center · 12 a 37 m²</p>
+      <ul class="result-features"><li>Mobiliario incluido</li><li>All-inclusive</li><li>Staff bilingüe</li><li>Domicilio fiscal y comercial</li></ul>
+      <div class="result-card-price">5 oficinas</div>
+      <div class="result-card-price-label">disponibles ahora</div>
+      <div class="result-actions"><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Cotizar</a><a href="business-center.html" class="btn-sm-olive" style="text-decoration:none">Ver detalles</a></div>
     </div>
     <div class="result-card" data-format="torre" data-disp="inmediata">
       <p class="result-card-tag">Torre Palmas</p>
       <div class="avail-badge green"><span class="status-dot"></span>Disponible ahora</div>
-      <h3 class="result-card-title">Oficina Corporativa</h3>
-      <p class="result-card-size">Torre Palmas · 67–214 m²</p>
-      <ul class="result-features"><li>100% Personalizable</li><li>Vistas al Parque Providencia</li><li>Estacionamiento techado</li><li>Domicilio fiscal</li></ul>
-      <div class="result-card-price">Bajo solicitud</div>
-      <div class="result-card-price-label">Precio según metraje</div>
+      <h3 class="result-card-title">Oficinas Corporativas</h3>
+      <p class="result-card-size">Torre Palmas · 67 a 214 m²</p>
+      <ul class="result-features"><li>100% personalizable</li><li>Vistas al Parque Providencia</li><li>Estacionamiento techado</li><li>Domicilio fiscal y comercial</li></ul>
+      <div class="result-card-price">Pequeña y grande</div>
+      <div class="result-card-price-label">disponibles ahora</div>
       <div class="result-actions"><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Cotizar</a><a href="torre-palmas.html" class="btn-sm-olive" style="text-decoration:none">Ver detalles</a></div>
     </div>
   </div>
@@ -344,8 +351,10 @@
   <h3 class="legend-title">Leyenda de disponibilidad</h3>
   <div class="legend-grid">
     <div class="legend-item-full"><div class="legend-dot-full available"></div><span>Disponible — Mudanza inmediata</span></div>
+    <div class="legend-item-full"><div class="legend-dot-full reserved"></div><span>Reservada — En proceso de contratación</span></div>
     <div class="legend-item-full"><div class="legend-dot-full soon"></div><span>Próximamente — Disponible pronto</span></div>
     <div class="legend-item-full"><div class="legend-dot-full occupied"></div><span>Ocupada — Lista de espera</span></div>
+    <div class="legend-item-full"><div class="legend-dot-full coworking"></div><span>Coworking — Espacio compartido</span></div>
   </div>
 </div>
 
@@ -362,7 +371,6 @@
     <div>
       <p class="footer-col-title">Navegación</p>
       <ul class="footer-links">
-        <li><a href="index.html">Inicio</a></li>
         <li><a href="nosotros.html">Nosotros</a></li>
         <li><a href="ubicacion.html">Ubicación</a></li>
         <li><a href="disponibilidad.html">Disponibilidad</a></li>
@@ -370,7 +378,7 @@
       </ul>
     </div>
     <div>
-      <p class="footer-col-title">Servicios</p>
+      <p class="footer-col-title">Espacios</p>
       <ul class="footer-links">
         <li><a href="torre-palmas.html">Torre Palmas</a></li>
         <li><a href="business-center.html">Business Center</a></li>

@@ -81,14 +81,13 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="nav-logo"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="height: 40px; object-fit: contain;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="object-fit: contain;"></a>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-link" data-page="home">Inicio</a></li>
     <li><a href="nosotros.html" class="nav-link" data-page="nosotros">Nosotros</a></li>
     <li><a href="ubicacion.html" class="nav-link" data-page="ubicacion">Ubicación</a></li>
     <li id="dropLi">
-      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="servicios" onclick="toggleDrop();return false;">
-        Servicios <span class="caret"></span>
+      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="espacios" onclick="toggleDrop();return false;">
+        Espacios <span class="caret"></span>
       </button>
       <div class="nav-dropdown" id="navDropdown">
         <a href="torre-palmas.html"><span class="dd-icon">🏢</span>Torre Palmas</a>
@@ -106,11 +105,10 @@
 
 <div class="mobile-nav" id="mobileNav">
   <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Cerrar menú">&times;</button>
-  <a href="index.html">Inicio</a>
   <a href="nosotros.html">Nosotros</a>
   <a href="ubicacion.html">Ubicación</a>
   <div class="mobile-nav-section">
-    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Servicios <span id="serviceCaretMobile">▼</span></button>
+    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Espacios <span id="serviceCaretMobile">▼</span></button>
     <div class="mobile-nav-submenu" id="mobileServiceMenu">
       <a href="torre-palmas.html">Torre Palmas</a>
       <a href="business-center.html">Business Center</a>
@@ -187,7 +185,6 @@
     <div>
       <p class="footer-col-title">Navegación</p>
       <ul class="footer-links">
-        <li><a href="index.html">Inicio</a></li>
         <li><a href="nosotros.html">Nosotros</a></li>
         <li><a href="ubicacion.html">Ubicación</a></li>
         <li><a href="disponibilidad.html">Disponibilidad</a></li>
@@ -195,7 +192,7 @@
       </ul>
     </div>
     <div>
-      <p class="footer-col-title">Servicios</p>
+      <p class="footer-col-title">Espacios</p>
       <ul class="footer-links">
         <li><a href="torre-palmas.html">Torre Palmas</a></li>
         <li><a href="business-center.html">Business Center</a></li>

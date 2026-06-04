@@ -3,14 +3,13 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="/" class="nav-logo" onclick="showPage('home');return false;"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="height: 40px; object-fit: contain;"></a>
+  <a href="/" class="nav-logo" onclick="showPage('home');return false;"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="object-fit: contain;"></a>
   <ul class="nav-links">
-    <li><a href="/" onclick="return false;" class="nav-link active" data-page="home">Inicio</a></li>
     <li><a href="/nosotros.html" onclick="return false;" class="nav-link" data-page="nosotros">Nosotros</a></li>
     <li><a href="/ubicacion.html" onclick="return false;" class="nav-link" data-page="ubicacion">Ubicación</a></li>
     <li id="dropLi">
-      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="servicios" onclick="toggleDrop();return false;">
-        Servicios <span class="caret"></span>
+      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="espacios" onclick="toggleDrop();return false;">
+        Espacios <span class="caret"></span>
       </button>
       <div class="nav-dropdown" id="navDropdown">
         <a href="/torre-palmas.html" onclick="return false;"><span class="dd-icon">🏢</span>Torre Palmas</a>
@@ -27,11 +26,10 @@
 </nav>
 
 <div class="mobile-nav" id="mobileNav">
-  <a href="/">Inicio</a>
   <a href="/nosotros.html">Nosotros</a>
   <a href="/ubicacion.html">Ubicación</a>
   <div class="mobile-nav-section">
-    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Servicios <span id="serviceCaretMobile">▼</span></button>
+    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Espacios <span id="serviceCaretMobile">▼</span></button>
     <div class="mobile-nav-submenu" id="mobileServiceMenu">
       <a href="/torre-palmas.html">Torre Palmas</a>
       <a href="/business-center.html">Business Center</a>

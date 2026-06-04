@@ -190,7 +190,7 @@ function updateFloorView(floorNumber) {
   const floor = floorPlans[floorNumber];
   if (!floor) return;
 
-  const statusLabel = s => s === 'occupied' ? 'Ocupada' : s === 'available' ? 'Disponible' : s === 'coworking' ? 'Coworking' : 'Próximamente';
+  const statusLabel = s => s === 'occupied' ? 'Ocupada' : s === 'available' ? 'Disponible' : s === 'coworking' ? 'Coworking' : s === 'reserved' ? 'Reservada' : 'Próximamente';
   let svgRooms = floor.rooms.map(room => {
     const statusClass = room.status;
     const areaPart = room.area ? ', ' + room.area : '';
@@ -214,7 +214,8 @@ function updateFloorView(floorNumber) {
             .room-unit.available { fill: rgba(200,230,201,0.7); }
             .room-unit.soon { fill: rgba(255,249,196,0.7); }
             .room-unit.occupied { fill: rgba(255,204,204,0.65); }
-            .room-unit.coworking { fill: rgba(167,216,200,0.7); }
+            .room-unit.coworking { fill: rgba(79,179,212,0.55); stroke: #1e90b8; }
+            .room-unit.reserved { fill: rgba(255,183,77,0.7); }
             .room-unit:hover { filter: brightness(0.88); stroke-width: 2.5; }
           </style>
         </defs>

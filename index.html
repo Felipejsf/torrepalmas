@@ -256,14 +256,13 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="nav-logo"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="height: 40px; object-fit: contain;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/logotipo-torre-palmas.png" alt="Torre Palmas" style="object-fit: contain;"></a>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-link" data-page="home">Inicio</a></li>
     <li><a href="nosotros.html" class="nav-link" data-page="nosotros">Nosotros</a></li>
     <li><a href="ubicacion.html" class="nav-link" data-page="ubicacion">Ubicación</a></li>
     <li id="dropLi">
-      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="servicios" onclick="toggleDrop();return false;">
-        Servicios <span class="caret"></span>
+      <button class="nav-drop-btn nav-link" id="dropBtn" data-page="espacios" onclick="toggleDrop();return false;">
+        Espacios <span class="caret"></span>
       </button>
       <div class="nav-dropdown" id="navDropdown">
         <a href="torre-palmas.html"><span class="dd-icon">🏢</span>Torre Palmas</a>
@@ -281,11 +280,10 @@
 
 <div class="mobile-nav" id="mobileNav">
   <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Cerrar menú">&times;</button>
-  <a href="index.html">Inicio</a>
   <a href="nosotros.html">Nosotros</a>
   <a href="ubicacion.html">Ubicación</a>
   <div class="mobile-nav-section">
-    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Servicios <span id="serviceCaretMobile">▼</span></button>
+    <button class="mobile-nav-toggle" onclick="toggleMobileServiceMenu()">Espacios <span id="serviceCaretMobile">▼</span></button>
     <div class="mobile-nav-submenu" id="mobileServiceMenu">
       <a href="torre-palmas.html">Torre Palmas</a>
       <a href="business-center.html">Business Center</a>
@@ -318,6 +316,7 @@
     <div class="hero-actions">
       <a href="disponibilidad.html" class="btn-primary" style="text-decoration:none">Ver Disponibilidad</a>
       <a href="contacto.html" class="btn-outline-white" style="text-decoration:none">Agendar Visita</a>
+      <button type="button" class="btn-outline-white" onclick="alert('Video brochure próximamente — pídelo por WhatsApp al 722 571 9944.')" style="cursor:pointer">▶ Video Brochure</button>
     </div>
   </div>
   <span class="hero-scroll">Explorar</span>
@@ -394,8 +393,8 @@
 <!-- Mini-galería: mix de los 3 servicios -->
 <section class="gallery-section">
   <div class="gallery-header">
-    <p class="section-label">Vive Torre Palmas</p>
-    <h2 class="section-title">Tres formatos. Un mismo <em>estándar</em>.</h2>
+    <p class="section-label">Nuestros Espacios</p>
+    <h2 class="section-title green">Mismo estándar de calidad · <em>3 formatos</em></h2>
     <p class="section-body">Oficinas corporativas, business center y coworking — todos pensados con el mismo nivel de detalle y servicios premium.</p>
   </div>
   <div class="gallery-mosaic">
@@ -445,15 +444,30 @@
 <!-- AMENIDADES — white -->
 <div class="section-light">
   <p class="section-label">Amenidades</p>
-  <h2 class="section-title">Todo lo que necesitas, <em>ya está aquí</em></h2>
-  <p class="section-body">Infraestructura completa para que tu empresa opere con los más altos estándares de calidad.</p>
+  <h2 class="section-title">Todo lo que necesitas en <em>Torre Palmas</em></h2>
+  <p class="section-body">Espacios e infraestructura premium pensados para que tu empresa opere con los más altos estándares de calidad.</p>
   <div class="amenidades-grid">
-    <div class="amenidad-item"><div class="amenidad-icon">🤝</div><div class="amenidad-title">7 Salas de Juntas</div><div class="amenidad-desc">Equipadas para 6, 8 y 15 personas con pantalla y tecnología.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">🤝</div><div class="amenidad-title">11 Salas de Juntas</div><div class="amenidad-desc">Equipadas para 6, 8 y 15 personas con pantalla y tecnología.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">🎓</div><div class="amenidad-title">2 Salas de Capacitación</div><div class="amenidad-desc">Para 20 y 40 personas. Formación y eventos corporativos.</div></div>
-    <div class="amenidad-item"><div class="amenidad-icon">☕</div><div class="amenidad-title">Cafetería & Coffee Lounge</div><div class="amenidad-desc">Comedor, terraza y áreas comunes para tus colaboradores.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">☕</div><div class="amenidad-title">Cafetería &amp; Coffee Lounge</div><div class="amenidad-desc">Comedor, terraza y áreas comunes para tus colaboradores.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">🏛️</div><div class="amenidad-title">Terraza para Eventos</div><div class="amenidad-desc">Eventos corporativos exclusivos con vista al Parque Providencia.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">🚬</div><div class="amenidad-title">Terraza para Fumadores</div><div class="amenidad-desc">Área dedicada y ventilada para uso del personal.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">🅿️</div><div class="amenidad-title">Estacionamiento Techado</div><div class="amenidad-desc">Cajones techados y zona exterior para visitas.</div></div>
+  </div>
+</div>
+
+<!-- SERVICIOS — surface (separados de amenidades) -->
+<div class="section-surface">
+  <p class="section-label">Servicios</p>
+  <h2 class="section-title">Servicios incluidos en tu <em>renta</em></h2>
+  <p class="section-body">Más allá del espacio físico, en Torre Palmas tu empresa cuenta con todo el soporte operativo que necesita.</p>
+  <div class="amenidades-grid">
+    <div class="amenidad-item"><div class="amenidad-icon">👥</div><div class="amenidad-title">Recepción Profesional</div><div class="amenidad-desc">Atiende visitas, llamadas y mensajería con staff bilingüe.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">📦</div><div class="amenidad-title">Recepción de Paquetería</div><div class="amenidad-desc">Recibimos y resguardamos tus envíos durante el día.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">📡</div><div class="amenidad-title">WiFi de Alta Velocidad</div><div class="amenidad-desc">Internet en todas las áreas comunes del edificio.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">🔒</div><div class="amenidad-title">Acceso Controlado 24/7</div><div class="amenidad-desc">CCTV y vigilancia permanente para tu tranquilidad.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">📬</div><div class="amenidad-title">Domicilio Fiscal y Comercial</div><div class="amenidad-desc">Usa nuestra dirección como tu domicilio registrado.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">🧹</div><div class="amenidad-title">Limpieza y Mantenimiento</div><div class="amenidad-desc">Áreas comunes mantenidas todos los días por nuestro equipo.</div></div>
   </div>
 </div>
 
@@ -482,7 +496,6 @@
     <div>
       <p class="footer-col-title">Navegación</p>
       <ul class="footer-links">
-        <li><a href="index.html">Inicio</a></li>
         <li><a href="nosotros.html">Nosotros</a></li>
         <li><a href="ubicacion.html">Ubicación</a></li>
         <li><a href="disponibilidad.html">Disponibilidad</a></li>
@@ -490,7 +503,7 @@
       </ul>
     </div>
     <div>
-      <p class="footer-col-title">Servicios</p>
+      <p class="footer-col-title">Espacios</p>
       <ul class="footer-links">
         <li><a href="torre-palmas.html">Torre Palmas</a></li>
         <li><a href="business-center.html">Business Center</a></li>
