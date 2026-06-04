@@ -315,7 +315,7 @@
   <div class="hero-img-mock">
     <div class="hero-img-inner">
       <video autoplay muted loop playsinline>
-        <source src="images/video portada.mp4" type="video/mp4">
+        <source src="images/Business_Center_Vid_Fin.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5
       </video>
     </div>
@@ -326,11 +326,59 @@
     <div class="hero-actions">
       <a href="disponibilidad.html" class="btn-primary" style="text-decoration:none">Ver Disponibilidad</a>
       <a href="contacto.html" class="btn-outline-white" style="text-decoration:none">Agendar Visita</a>
-      <button type="button" class="btn-outline-white" onclick="alert('Video brochure próximamente — pídelo por WhatsApp al 722 571 9944.')" style="cursor:pointer">▶ Video Brochure</button>
+      <button type="button" class="btn-outline-white" onclick="openVideoBrochure()" style="cursor:pointer">▶ Video Brochure</button>
     </div>
   </div>
   <span class="hero-scroll">Explorar</span>
 </section>
+
+<!-- Video Brochure Modal -->
+<div id="videoBrochureModal" class="video-brochure-modal" role="dialog" aria-label="Video Brochure Torre Palmas" aria-hidden="true" onclick="closeVideoBrochure(event)">
+  <div class="video-brochure-content" onclick="event.stopPropagation()">
+    <button type="button" class="video-brochure-close" onclick="closeVideoBrochure()" aria-label="Cerrar video">&times;</button>
+    <video id="videoBrochurePlayer" controls preload="metadata" playsinline>
+      <source src="images/Business_Center_Vid_Fin.mp4" type="video/mp4">
+      Tu navegador no soporta videos HTML5
+    </video>
+  </div>
+</div>
+<style>
+  .video-brochure-modal { position: fixed; inset: 0; background: rgba(15,18,14,0.94); z-index: 9998; display: none; align-items: center; justify-content: center; padding: 32px; opacity: 0; transition: opacity 0.3s; backdrop-filter: blur(6px); }
+  .video-brochure-modal.open { display: flex; opacity: 1; }
+  .video-brochure-content { position: relative; width: 100%; max-width: 1100px; aspect-ratio: 16/9; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: lbIn 0.4s cubic-bezier(0.22,1,0.36,1); }
+  .video-brochure-content video { width: 100%; height: 100%; display: block; }
+  .video-brochure-close { position: absolute; top: -52px; right: 0; width: 44px; height: 44px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; transition: background 0.25s, transform 0.25s; line-height: 1; }
+  .video-brochure-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+  @media (max-width: 768px) {
+    .video-brochure-modal { padding: 16px; }
+    .video-brochure-close { top: -44px; width: 36px; height: 36px; font-size: 22px; }
+  }
+</style>
+<script>
+  function openVideoBrochure() {
+    const modal = document.getElementById('videoBrochureModal');
+    const video = document.getElementById('videoBrochurePlayer');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    video.currentTime = 0;
+    video.play().catch(() => { /* autoplay puede fallar — el usuario tiene controles */ });
+  }
+  function closeVideoBrochure(event) {
+    if (event && event.target.id !== 'videoBrochureModal' && event.type === 'click') return;
+    const modal = document.getElementById('videoBrochureModal');
+    const video = document.getElementById('videoBrochurePlayer');
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    video.pause();
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('videoBrochureModal').classList.contains('open')) {
+      closeVideoBrochure();
+    }
+  });
+</script>
 
 <!-- STATS -->
 <div class="stats-bar">
