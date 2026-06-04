@@ -174,6 +174,14 @@ const floorPlans = {
       { id: 'C5', name: 'C5 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M433 374H481.09V473.6H433V374Z' },
       { id: 'C6', name: 'C6 · Ejecutiva Large', area: '18 m²', status: 'occupied', type: 'path', d: 'M488 374H533.82V473.6H488V374Z' }
     ]
+  },
+  coworking: {
+    viewBox: '0 0 743 1145',
+    image: 'images/coworking-plano.png',
+    rooms: [
+      // Sala principal de coworking (área de mesa grande con 12 lugares)
+      { id: 'CW-main', name: 'Coworking · Área principal', area: '17.5 m² · 12 lugares', status: 'coworking', type: 'rect', x: '30', y: '80', width: '700', height: '1050' }
+    ]
   }
 };
 
@@ -204,8 +212,14 @@ function updateFloorView(floorNumber) {
     }
   }).join('');
 
+  // Detectar planos verticales (alto > ancho) y limitar el ancho del contenedor
+  // para que no salgan excesivamente altos en el layout 30/70.
+  const vbParts = floor.viewBox.split(' ').map(Number);
+  const isPortrait = vbParts.length === 4 && vbParts[3] > vbParts[2];
+  const viewerStyle = isPortrait ? 'style="max-width:460px"' : '';
+
   container.innerHTML = `
-    <div class="floor-viewer">
+    <div class="floor-viewer" ${viewerStyle}>
       <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">
       <svg class="floor-svg" viewBox="${floor.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <defs>
