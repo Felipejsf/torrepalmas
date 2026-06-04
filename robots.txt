@@ -1,0 +1,11 @@
+# Torre Palmas — robots.txt
+# https://torrepalmas.com
+
+User-agent: *
+Allow: /
+
+# Disallow private/system paths if any
+Disallow: /includes/
+
+# Sitemap
+Sitemap: https://torrepalmas.com/sitemap.xml
