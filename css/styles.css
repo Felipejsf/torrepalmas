@@ -78,10 +78,17 @@ nav {
    y en el hero del home. El nav mide 96px (desktop) / 80px (móvil). */
 .product-page-hero { padding-top: 128px !important; }
 .product-page-hero .hero-eyebrow { margin-top: 0; }
-#hero { padding-top: 128px !important; }
+
+/* Hero del home: contenido a ~40% desde arriba (en vez de ~30%).
+   Como usa justify-content: flex-end, reducir padding-bottom baja el contenido. */
+#hero {
+  padding-top: 128px !important;
+  padding-bottom: 4vh !important;
+  justify-content: flex-end !important;
+}
 @media (max-width: 768px) {
   .product-page-hero { padding-top: 104px !important; }
-  #hero { padding-top: 104px !important; }
+  #hero { padding-top: 104px !important; padding-bottom: 6vh !important; }
 }
 nav.scrolled {
   background: var(--nav-bg);
