@@ -54,6 +54,17 @@
   </url>
 
   <url>
+    <loc>https://torrepalmas.com/amenidades.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://torrepalmas.com/images/all%20inclusive.jpeg</image:loc>
+      <image:title>Amenidades y Servicios — Torre Palmas Metepec</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://torrepalmas.com/ubicacion.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>yearly</changefreq>
