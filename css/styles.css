@@ -78,8 +78,10 @@ nav {
    y en el hero del home. El nav mide 96px (desktop) / 80px (móvil). */
 .product-page-hero { padding-top: 128px !important; }
 .product-page-hero .hero-eyebrow { margin-top: 0; }
+#hero { padding-top: 128px !important; }
 @media (max-width: 768px) {
   .product-page-hero { padding-top: 104px !important; }
+  #hero { padding-top: 104px !important; }
 }
 nav.scrolled {
   background: var(--nav-bg);
