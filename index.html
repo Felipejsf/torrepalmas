@@ -143,6 +143,10 @@
     .stat-item:last-child { border-right: none; }
     .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600; color: var(--green); line-height: 1; }
     .stat-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-low); margin-top: 8px; }
+    /* Rango "desde X hasta Y" */
+    .stat-range { display: flex; align-items: baseline; justify-content: center; gap: 6px; flex-wrap: wrap; font-family: 'Cormorant Garamond', serif; color: var(--green); line-height: 1; }
+    .stat-prefix { font-family: 'DM Sans', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); font-weight: 500; }
+    .stat-range .stat-num { font-size: 34px; }
     .products-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 64px; }
     .product-card { background: var(--white); padding: 48px 38px; border: 1px solid var(--olive-border); position: relative; overflow: hidden; transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s, background 0.35s, color 0.35s; cursor: none; }
     .product-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(to right, var(--olive), var(--green)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
@@ -168,6 +172,10 @@
     .olive-band-item:last-child { border-right: none; padding-right: 0; }
     .olive-band-num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:600; color:var(--olive); line-height:1; }
     .olive-band-label { font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-low); margin-top:8px; }
+    /* Rango "desde X hasta Y" en la barra olive */
+    .olive-band-range { display:flex; align-items:baseline; justify-content:center; gap:8px; flex-wrap:wrap; font-family:'Cormorant Garamond',serif; color:var(--olive); line-height:1; }
+    .olive-band-prefix { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-low); font-weight:500; }
+    .olive-band-range .olive-band-num { font-size:40px; }
     .why-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .why-visual { position: relative; height: 560px; background: var(--ink); overflow: hidden; }
     .why-visual::before { content:''; position:absolute; inset:0; background: linear-gradient(rgba(107,124,92,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(107,124,92,0.06) 1px, transparent 1px); background-size: 40px 40px; z-index: 2; }
@@ -325,8 +333,14 @@
 <!-- STATS -->
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Formatos de espacio</div></div>
-  <div class="stat-item"><div class="stat-num">214m²</div><div class="stat-label">Oficina más grande</div></div>
-  <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Salas de juntas</div></div>
+  <div class="stat-item">
+    <div class="stat-range">
+      <span class="stat-prefix">desde</span><span class="stat-num">13m²</span>
+      <span class="stat-prefix">hasta</span><span class="stat-num">214m²</span>
+    </div>
+    <div class="stat-label">en oficinas</div>
+  </div>
+  <div class="stat-item"><div class="stat-num">11</div><div class="stat-label">Salas de juntas</div></div>
   <div class="stat-item"><div class="stat-num">35</div><div class="stat-label">Min. de Santa Fe</div></div>
   <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Personalizable</div></div>
 </div>
@@ -385,8 +399,14 @@
 <!-- OLIVE BAND -->
 <div class="olive-band">
   <div class="olive-band-item"><div class="olive-band-num">3</div><div class="olive-band-label">Formatos de espacio</div></div>
-  <div class="olive-band-item"><div class="olive-band-num">214m²</div><div class="olive-band-label">Oficina más grande</div></div>
-  <div class="olive-band-item"><div class="olive-band-num">7</div><div class="olive-band-label">Salas de juntas</div></div>
+  <div class="olive-band-item">
+    <div class="olive-band-range">
+      <span class="olive-band-prefix">desde</span><span class="olive-band-num">13m²</span>
+      <span class="olive-band-prefix">hasta</span><span class="olive-band-num">214m²</span>
+    </div>
+    <div class="olive-band-label">en oficinas</div>
+  </div>
+  <div class="olive-band-item"><div class="olive-band-num">11</div><div class="olive-band-label">Salas de juntas</div></div>
   <div class="olive-band-item"><div class="olive-band-num">2</div><div class="olive-band-label">Salas de capacitación</div></div>
 </div>
 
