@@ -123,6 +123,7 @@ const floorPlans = {
   3: {
     viewBox: '0 0 687.27 678.02',
     image: 'images/Piso3_PlanoRecurso 9.png',
+    occupancy: '100%',
     rooms: [
       { id: '301', name: 'Oficina 301', area: '85 m²', status: 'occupied', points: '473.06 .21 473.06 208.45 687.06 208.45 687.06 .21 473.06 .21' },
       { id: '302', name: 'Oficina 302', area: '103.41 m²', status: 'occupied', points: '321.88 1.39 321.88 147.39 .93 148.1 .21 1.39 321.88 1.39' },
@@ -135,6 +136,7 @@ const floorPlans = {
   4: {
     viewBox: '0 0 711.96 701.77',
     image: 'images/Piso4_PlanoRecurso 11.png',
+    occupancy: '100%',
     rooms: [
       { id: '401', name: 'Oficina 401', area: '97 m²', status: 'occupied', x: '488.96', y: '.21', width: '222.78', height: '221.87', type: 'rect' },
       { id: '402', name: 'Oficina 402', area: '112.22 m²', status: 'occupied', points: '333.43 2.9 333.43 159.64 1.37 160.4 .62 2.9 333.43 2.9', type: 'polygon' },
@@ -148,6 +150,7 @@ const floorPlans = {
   business: {
     viewBox: '0 0 704 490',
     image: 'images/Oficinas bussynes center.png',
+    occupancy: '86%',
     rooms: [
       { id: 'A1a', name: 'A1a · Ejecutiva', area: '15 m²', status: 'available', type: 'path', d: 'M94.4102 30.3498H46.3802C46.3302 44.1598 46.2902 57.9698 46.2402 71.7798C67.5902 71.7698 88.9302 71.7598 110.28 71.7398C110.39 68.8998 110.5 66.0598 110.62 63.2198H132.11C132.12 46.5298 132.13 29.8498 132.14 13.1598L94.4002 13.0898V30.3398L94.4102 30.3498Z' },
       { id: 'A7b', name: 'A7b · Ejecutiva Plus', area: '17 m²', status: 'occupied', type: 'path', d: 'M134.529 13C163.519 13.01 192.499 13.03 221.489 13.04L221.609 63.65C192.599 63.51 163.579 63.37 134.569 63.24C134.559 46.5 134.549 29.75 134.529 13.01V13Z' },
@@ -215,6 +218,15 @@ function updateFloorView(floorNumber) {
   const isPortrait = vbParts.length === 4 && vbParts[3] > vbParts[2];
   const viewerStyle = isPortrait ? 'style="max-width:460px"' : '';
 
+  // Badge de ocupación (solo si el piso lo define)
+  const occupancyBadge = floor.occupancy ? `
+    <div class="floor-occupancy-badge" role="status" aria-label="Ocupación del piso: ${floor.occupancy}">
+      <span class="occupancy-dot"></span>
+      <span class="occupancy-pct">${floor.occupancy}</span>
+      <span class="occupancy-label">de ocupación</span>
+    </div>
+  ` : '';
+
   // Si el plano no tiene habitaciones interactivas (p.ej. Coworking),
   // solo se muestra la imagen — sin SVG overlay ni tooltip.
   const svgOverlay = floor.rooms.length > 0 ? `
@@ -235,6 +247,7 @@ function updateFloorView(floorNumber) {
       <div class="room-tooltip" id="roomTooltip" style="display:none;"></div>` : '';
 
   container.innerHTML = `
+    ${occupancyBadge}
     <div class="floor-viewer" ${viewerStyle}>
       <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">${svgOverlay}
     </div>

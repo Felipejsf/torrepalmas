@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "torrepalmas",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", "C:/Users/fsalvati/Downloads/Torrepalmas", "-p", "8100", "-c-1"],
+      "port": 8100
+    },
+    {
+      "name": "romlin",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", "C:/Users/fsalvati/Pictures/romlin", "-p", "8099", "-c-1"],
+      "port": 8099
+    }
+  ]
+}

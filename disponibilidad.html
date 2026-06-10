@@ -74,7 +74,13 @@
     .floor-btn:hover { border-color: var(--green); color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 18px rgba(20,153,75,0.14); }
     .floor-btn.active { background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: white; border-color: transparent; box-shadow: 0 10px 24px rgba(20,153,75,0.30); transform: translateY(-2px); }
     .floor-btn.active:hover { color: white; }
-    .floor-display { position: relative; background: white; border: 1px solid var(--olive-border); border-radius: 4px; overflow: auto; padding: 28px; }
+    .floor-display { position: relative; background: white; border: 1px solid var(--olive-border); border-radius: 4px; overflow: auto; padding: 28px; text-align: center; }
+
+    /* Badge de ocupación por piso */
+    .floor-occupancy-badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 999px; margin: 0 auto 18px; width: fit-content; }
+    .occupancy-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .occupancy-pct { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--green); line-height: 1; }
+    .occupancy-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); font-weight: 600; }
     .floor-svg-container { width: 100%; height: auto; display: flex; align-items: center; justify-content: center; max-width: 900px; margin: 0 auto; position: relative; }
     .floor-svg-container svg { width: 100%; height: 100%; filter: drop-shadow(0 8px 24px rgba(26,31,24,0.1)); }
 
