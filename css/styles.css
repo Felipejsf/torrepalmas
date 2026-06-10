@@ -309,16 +309,26 @@ footer { padding:80px 56px 44px; background: linear-gradient(135deg, var(--green
 .product-page-hero .hero-sub { animation-delay:0.45s; }
 .product-page-hero .hero-actions { animation-delay:0.60s; }
 
-/* Aparición al hacer scroll (activada por JS con .reveal-in) */
-.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-.reveal.reveal-in { opacity:1; transform:none; }
+/* Aparición al hacer scroll (activada por JS con .reveal-in).
+   Usa animation (no transition) para no contaminar los hovers con el
+   delay escalonado — el delay se pasa vía CSS variable --reveal-delay. */
+.reveal { opacity:0; transform:translateY(28px); }
+.reveal.reveal-in {
+  animation: revealIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+  animation-delay: var(--reveal-delay, 0s);
+}
+@keyframes revealIn {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:none; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .product-page-hero .hero-eyebrow,
   .product-page-hero .hero-h1,
   .product-page-hero .hero-sub,
   .product-page-hero .hero-actions { animation:none; opacity:1; }
-  .reveal { transition:none; opacity:1; transform:none; }
+  .reveal { opacity:1; transform:none; }
+  .reveal.reveal-in { animation:none; }
 }
 
 /* ── NOSOTROS SECTION ── */

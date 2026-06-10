@@ -345,7 +345,8 @@ function initScrollReveal() {
     '.products-grid, .amenidades-grid, .results-grid, .why-grid, .numbers-grid, .services-grid, .contact-channels, .olive-band, .stats-bar'
   ).forEach(grid => {
     Array.from(grid.children).forEach((child, i) => {
-      child.style.transitionDelay = (i * 0.08) + 's';
+      // Variable CSS dedicada al stagger del reveal — no contamina otras transitions (hover)
+      child.style.setProperty('--reveal-delay', (i * 0.08) + 's');
     });
   });
 
