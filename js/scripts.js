@@ -218,14 +218,17 @@ function updateFloorView(floorNumber) {
   const isPortrait = vbParts.length === 4 && vbParts[3] > vbParts[2];
   const viewerStyle = isPortrait ? 'style="max-width:460px"' : '';
 
-  // Badge de ocupación (solo si el piso lo define)
-  const occupancyBadge = floor.occupancy ? `
-    <div class="floor-occupancy-badge" role="status" aria-label="Ocupación del piso: ${floor.occupancy}">
-      <span class="occupancy-dot"></span>
-      <span class="occupancy-pct">${floor.occupancy}</span>
-      <span class="occupancy-label">de ocupación</span>
-    </div>
-  ` : '';
+  // Badge de ocupación (separado del plano — se renderiza en su propio contenedor arriba)
+  const occupancyContainer = document.getElementById('floorOccupancyContainer');
+  if (occupancyContainer) {
+    occupancyContainer.innerHTML = floor.occupancy ? `
+      <div class="floor-occupancy-badge" role="status" aria-label="Ocupación del piso: ${floor.occupancy}">
+        <span class="occupancy-dot"></span>
+        <span class="occupancy-pct">${floor.occupancy}</span>
+        <span class="occupancy-label">de ocupación</span>
+      </div>
+    ` : '';
+  }
 
   // Si el plano no tiene habitaciones interactivas (p.ej. Coworking),
   // solo se muestra la imagen — sin SVG overlay ni tooltip.
@@ -247,7 +250,6 @@ function updateFloorView(floorNumber) {
       <div class="room-tooltip" id="roomTooltip" style="display:none;"></div>` : '';
 
   container.innerHTML = `
-    ${occupancyBadge}
     <div class="floor-viewer" ${viewerStyle}>
       <img src="${floor.image}" alt="Plano Decorativo" class="floor-decoration">${svgOverlay}
     </div>
