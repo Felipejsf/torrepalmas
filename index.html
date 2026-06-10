@@ -128,13 +128,13 @@
     .hero-img-mock { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
     .hero-img-inner { width: 100%; height: 100%; position: relative; display: flex; align-items: flex-end; justify-content: center; }
     .hero-img-inner video { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-    .hero-img-inner::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); z-index: 1; }
+    .hero-img-inner::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 1; }
     .hero-content { position: relative; z-index: 2; max-width: 580px; }
     .hero-eyebrow { font-size: 11px; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: var(--white); display: flex; align-items: center; gap: 14px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
     .hero-eyebrow::before { content:''; display:block; width:36px; height:1px; background:var(--white); }
     .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(50px, 6.5vw, 90px); font-weight: 600; line-height: 0.95; color: var(--white); opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
     .hero-h1 em { font-style: italic; color: var(--green); }
-    .hero-sub { font-size: 15px; font-weight: 300; color: var(--white); line-height: 1.8; max-width: 400px; margin-top: 24px; margin-bottom: 44px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
+    .hero-sub { font-size: 15px; font-weight: 400; color: var(--white); line-height: 1.8; max-width: 400px; margin-top: 24px; margin-bottom: 44px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
     .hero-actions { display: flex; gap: 14px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; flex-wrap: wrap; width: max-content; max-width: 100vw; }
     .hero-scroll { position: absolute; bottom: 48px; right: 56px; display: flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); writing-mode: vertical-rl; animation: fadeUp 0.8s ease 1s forwards; opacity: 0; }
     .hero-scroll::after { content:''; display:block; width:1px; height:52px; background: linear-gradient(to bottom, var(--olive-light), transparent); animation: scrollLine 2s ease infinite; }
@@ -255,6 +255,22 @@
       .why-badge-sm .why-badge-num { font-size: 24px; }
       .why-badge-row { gap: 10px; margin-top: 6px; }
     }
+
+    /* ——— CLIENTS CAROUSEL ——— */
+    .clients-section { background: var(--white); border-top: 1px solid var(--olive-border); border-bottom: 1px solid var(--olive-border); padding: 52px 0; overflow: hidden; position: relative; }
+    .clients-section::before, .clients-section::after { content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none; }
+    .clients-section::before { left: 0; background: linear-gradient(to right, var(--white), transparent); }
+    .clients-section::after { right: 0; background: linear-gradient(to left, var(--white), transparent); }
+    .clients-header { text-align: center; padding: 0 56px; margin-bottom: 40px; }
+    .clients-eyebrow { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--olive); font-weight: 500; display: inline-flex; align-items: center; gap: 12px; }
+    .clients-eyebrow::before, .clients-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--olive); }
+    .clients-carousel { overflow: hidden; width: 100%; }
+    .clients-track { display: flex; align-items: center; gap: 64px; width: max-content; animation: clientsMarquee 38s linear infinite; }
+    .clients-track:hover { animation-play-state: paused; }
+    .client-logo { height: 110px; width: auto; max-width: 340px; object-fit: contain; filter: grayscale(1) opacity(0.38); transition: filter 0.35s, transform 0.35s; flex-shrink: 0; cursor: none; }
+    .client-logo:hover { filter: grayscale(0) opacity(1); transform: scale(1.06); }
+    @keyframes clientsMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (max-width: 768px) { .clients-header { padding: 0 22px; } .client-logo { height: 80px; } }
   </style>
 </head>
 <body>
@@ -390,9 +406,49 @@
     </div>
     <div class="stat-label">en oficinas</div>
   </div>
-  <div class="stat-item"><div class="stat-num">11</div><div class="stat-label">Salas de juntas</div></div>
+  <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Salas de juntas</div></div>
   <div class="stat-item"><div class="stat-num">35</div><div class="stat-label">Min. de Santa Fe</div></div>
   <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Personalizable</div></div>
+</div>
+
+<!-- CLIENTS CAROUSEL -->
+<div class="clients-section">
+  <div class="clients-header">
+    <span class="clients-eyebrow">Empresas que confían en nosotros</span>
+  </div>
+  <div class="clients-carousel">
+    <div class="clients-track">
+      <img src="images/logos%20clientes/1.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/2.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/3.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/4.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/5.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/6.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/7.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/8.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/9.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/10.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/11.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/12.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/13.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/14.png" alt="Cliente" class="client-logo">
+      <!-- Duplicate for seamless loop -->
+      <img src="images/logos%20clientes/1.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/2.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/3.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/4.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/5.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/6.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/7.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/8.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/9.png"  alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/10.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/11.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/12.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/13.png" alt="Cliente" class="client-logo">
+      <img src="images/logos%20clientes/14.png" alt="Cliente" class="client-logo">
+    </div>
+  </div>
 </div>
 
 <!-- PRODUCTS — light -->
@@ -421,7 +477,7 @@
       <p class="product-subtitle">Oficina lista, hoy mismo</p>
       <ul class="product-features">
         <li>Mobiliario incluido</li>
-        <li>De 12 a 37 m²</li>
+        <li>De 13 a 37 m²</li>
         <li>Para 1 a 6 personas</li>
         <li>5 categorías: Ejecutiva → Gerencial</li>
         <li>Llave en mano, opera hoy</li>
@@ -434,8 +490,8 @@
       <h3 class="product-title">Espacio<br>Colaborativo</h3>
       <p class="product-subtitle">Sin ataduras</p>
       <ul class="product-features">
-        <li>12 lugares compartidos</li>
-        <li>17.5 m² totales</li>
+        <li>Espacios compartidos</li>
+        <li>Amplio espacio de trabajo</li>
         <li>Lugar fijo asignado</li>
         <li>Ambiente colaborativo</li>
         <li>Contratos flexibles desde 3 meses</li>
@@ -456,7 +512,7 @@
     </div>
     <div class="olive-band-label">en oficinas</div>
   </div>
-  <div class="olive-band-item"><div class="olive-band-num">11</div><div class="olive-band-label">Salas de juntas</div></div>
+  <div class="olive-band-item"><div class="olive-band-num">12</div><div class="olive-band-label">Salas de juntas</div></div>
   <div class="olive-band-item"><div class="olive-band-num">2</div><div class="olive-band-label">Salas de capacitación</div></div>
 </div>
 
@@ -503,7 +559,7 @@
       <h2 class="section-title">Más que una oficina, una <em>dirección</em> que habla por ti</h2>
       <div class="why-grid">
         <div class="why-item"><div class="why-icon">📍</div><div class="why-item-title">Ubicación Premium</div><div class="why-item-text">Av. Comonfort, frente al Parque Providencia, a un lado de Town Square.</div></div>
-        <div class="why-item"><div class="why-icon">🏢</div><div class="why-item-title">3 Formatos</div><div class="why-item-text">Coworking, oficinas equipadas o personalizables según tu etapa empresarial.</div></div>
+        <div class="why-item"><div class="why-icon">🏢</div><div class="why-item-title">3 Formatos</div><div class="why-item-text">Coworking, oficinas equipadas y personalizables según tu etapa empresarial.</div></div>
         <div class="why-item"><div class="why-icon">⚡</div><div class="why-item-title">Mudanza Inmediata</div><div class="why-item-text">Espacios listos para operar desde el día uno. Sin esperas.</div></div>
         <div class="why-item"><div class="why-icon">🚗</div><div class="why-item-title">35 min de Santa Fe</div><div class="why-item-text">Conectividad con CDMX, AICM y Toluca. El punto estratégico del Edomex.</div></div>
       </div>
@@ -517,12 +573,12 @@
   <h2 class="section-title">Todo lo que necesitas en <em>Torre Palmas</em></h2>
   <p class="section-body">Espacios e infraestructura premium pensados para que tu empresa opere con los más altos estándares de calidad.</p>
   <div class="amenidades-grid">
-    <div class="amenidad-item"><div class="amenidad-icon">🤝</div><div class="amenidad-title">11 Salas de Juntas</div><div class="amenidad-desc">Equipadas para 6, 8 y 15 personas con pantalla y tecnología.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">🤝</div><div class="amenidad-title">12 Salas de Juntas</div><div class="amenidad-desc">Equipadas para 6, 8 y 15 personas con pantalla y tecnología.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">🎓</div><div class="amenidad-title">2 Salas de Capacitación</div><div class="amenidad-desc">Para 20 y 40 personas. Formación y eventos corporativos.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">☕</div><div class="amenidad-title">Cafetería &amp; Coffee Lounge</div><div class="amenidad-desc">Comedor, terraza y áreas comunes para tus colaboradores.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">🏛️</div><div class="amenidad-title">Terraza para Eventos</div><div class="amenidad-desc">Eventos corporativos exclusivos con vista al Parque Providencia.</div></div>
     <div class="amenidad-item"><div class="amenidad-icon">🚬</div><div class="amenidad-title">Terraza para Fumadores</div><div class="amenidad-desc">Área dedicada y ventilada para uso del personal.</div></div>
-    <div class="amenidad-item"><div class="amenidad-icon">🅿️</div><div class="amenidad-title">Estacionamiento Techado</div><div class="amenidad-desc">Cajones techados y zona exterior para visitas.</div></div>
+    <div class="amenidad-item"><div class="amenidad-icon">🅿️</div><div class="amenidad-title">Estacionamiento Techado</div><div class="amenidad-desc">Cajones techados .</div></div>
   </div>
 </div>
 
