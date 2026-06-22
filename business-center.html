@@ -128,6 +128,7 @@
     .office-table tr:hover { background: var(--surface); }
     .status-dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-right: 6px; }
     .status-dot.yellow { background: #eab308; }
+    .status-dot.red { background: #dc2626; }
     .btn-sm-green { background: var(--green); color: white; padding: 8px 16px; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: filter 0.25s; }
     .btn-sm-green:hover { filter: brightness(1.08); }
     .cta-section { padding: 100px 56px; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
@@ -269,11 +270,11 @@
   <table class="office-table">
     <thead><tr><th>Tipo</th><th>Tamaño</th><th>Personas</th><th>Disponibilidad</th><th></th></tr></thead>
     <tbody>
-      <tr><td>Ejecutiva</td><td>13 m²</td><td>1–2</td><td><span class="status-dot"></span>Disponible</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Solicitar</a></td></tr>
-      <tr><td>Ejecutiva Large</td><td>19 m²</td><td>2–3</td><td><span class="status-dot"></span>Disponible</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Solicitar</a></td></tr>
-      <tr><td>Ejecutiva Plus</td><td>17 m²</td><td>2</td><td><span class="status-dot yellow"></span>Pronto</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Notificar</a></td></tr>
-      <tr><td>Ejecutiva Large Plus</td><td>22 m²</td><td>3–4</td><td><span class="status-dot"></span>Disponible</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Solicitar</a></td></tr>
-      <tr><td>Gerencial</td><td>37 m²</td><td>4–6</td><td><span class="status-dot"></span>Disponible</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Solicitar</a></td></tr>
+      <tr><td>Ejecutiva</td><td>13 m²</td><td>1–2</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
+      <tr><td>Ejecutiva Large</td><td>19 m²</td><td>2–3</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
+      <tr><td>Ejecutiva Plus</td><td>17 m²</td><td>2</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
+      <tr><td>Ejecutiva Large Plus</td><td>22 m²</td><td>3–4</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
+      <tr><td>Gerencial</td><td>37 m²</td><td>4–6</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
     </tbody>
   </table>
 </div>

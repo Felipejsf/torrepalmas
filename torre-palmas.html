@@ -134,6 +134,7 @@
     .office-table tr:hover { background: var(--surface); }
     .status-dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-right: 6px; }
     .status-dot.yellow { background: #eab308; }
+    .status-dot.red { background: #dc2626; }
     .btn-sm-green { background: var(--green); color: white; padding: 8px 16px; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: filter 0.25s; }
     .btn-sm-green:hover { filter: brightness(1.08); }
     .cta-section { padding: 100px 56px; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
@@ -215,7 +216,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Oficinas Corporativas</p>
     <h1 class="hero-h1">Torre<br><em>Palmas</em></h1>
-    <p class="hero-sub">Oficinas desde 67 m² hasta 214 m², 100% personalizables. Construye tu espacio corporativo a la medida de tu marca.</p>
+    <p class="hero-sub">Oficinas desde 67 m² hasta 214 m², 100% personalizables. Diseña tu espacio corporativo a la medida de tu marca.</p>
     <div class="hero-actions">
       <a href="contacto.html" class="btn-primary" style="text-decoration:none">Solicitar Cotización</a>
       <a href="contacto.html" class="btn-outline-white" style="text-decoration:none">Agendar Visita</a>
@@ -268,9 +269,9 @@
   <table class="office-table">
     <thead><tr><th>Tipo</th><th>Superficie</th><th>Ideal para</th><th>Disponibilidad</th><th></th></tr></thead>
     <tbody>
-      <tr><td>Oficina Pequeña</td><td>67 m²</td><td>5–8 personas</td><td><span class="status-dot"></span>Disponible</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Cotizar</a></td></tr>
-      <tr><td>Oficina Mediana</td><td>100–130 m²</td><td>10–15 personas</td><td><span class="status-dot yellow"></span>Próximamente</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Notificarme</a></td></tr>
-      <tr><td>Oficina Grande</td><td>150–214 m²</td><td>15–30 personas</td><td><span class="status-dot"></span>Disponible</td><td><a href="contacto.html" class="btn-sm-green" style="text-decoration:none">Cotizar</a></td></tr>
+      <tr><td>Oficina Pequeña</td><td>67 m²</td><td>5–8 personas</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
+      <tr><td>Oficina Mediana</td><td>100–130 m²</td><td>10–15 personas</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
+      <tr><td>Oficina Grande</td><td>150–214 m²</td><td>15–30 personas</td><td><span class="status-dot red"></span>Totalmente ocupada</td><td><a href="contacto.html" class="btn-sm-olive" style="text-decoration:none">Lista de espera</a></td></tr>
     </tbody>
   </table>
 </div>
