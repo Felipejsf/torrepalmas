@@ -150,7 +150,7 @@ const floorPlans = {
   business: {
     viewBox: '0 0 704 490',
     image: 'images/Oficinas bussynes center.png',
-    occupancy: '79%',
+    occupancy: '85%',
     rooms: [
       { id: 'A1a', name: 'A1a · Ejecutiva', area: '15 m²', status: 'available', type: 'path', d: 'M94.4102 30.3498H46.3802C46.3302 44.1598 46.2902 57.9698 46.2402 71.7798C67.5902 71.7698 88.9302 71.7598 110.28 71.7398C110.39 68.8998 110.5 66.0598 110.62 63.2198H132.11C132.12 46.5298 132.13 29.8498 132.14 13.1598L94.4002 13.0898V30.3398L94.4102 30.3498Z' },
       { id: 'A7b', name: 'A7b · Ejecutiva Plus', area: '17 m²', status: 'occupied', type: 'path', d: 'M134.529 13C163.519 13.01 192.499 13.03 221.489 13.04L221.609 63.65C192.599 63.51 163.579 63.37 134.569 63.24C134.559 46.5 134.549 29.75 134.529 13.01V13Z' },
@@ -181,6 +181,7 @@ const floorPlans = {
   coworking: {
     viewBox: '0 0 743 1145',
     image: 'images/coworking-plano.png',
+    occupancy: '100%',
     rooms: []
   }
 };
